@@ -4,4 +4,4 @@ interface:
   icon_small: "./assets/yanfu-icon.png"
   icon_large: "./assets/yanfu-icon.png"
   brand_color: "#A8302D"
-  default_prompt: "Use $yanfu to translate this existing Landing Page and product screenshots into a clearer landing.html and yanfu-notes.md."
+  default_prompt: "用 $yanfu 把这个已有 Landing Page 和产品截图翻译成更清楚的 landing.html 与 yanfu-notes.md。"

@@ -1,81 +1,81 @@
-# Translation Method
+# 翻译方法
 
-## Translation Ledger
+## 翻译底稿
 
-Create this internal table before drafting the new page:
+写新页面前建立以下内部表格：
 
-| Field | Meaning |
+| 字段 | 含义 |
 | --- | --- |
-| New expression | Proposed copy or structural statement |
-| Source evidence | Exact page section, screenshot, or developer statement |
-| Treatment | Preserve, compress, reorganize, weaken, or delete |
-| Confidence | Confirmed, observed, or needs confirmation |
+| 新页面表达 | 准备使用的文案或结构表达 |
+| 原始依据 | 原页面区块、产品截图或开发者补充 |
+| 处理方式 | 保留、压缩、重组、弱化或删除 |
+| 置信度 | 已确认、观察所得或需要确认 |
 
-Rules:
+规则：
 
-- Every consequential headline, result, proof point, and CTA needs a source.
-- `Observed` supports only what is visibly present.
-- `Needs confirmation` must not enter `landing.html`.
-- Important deleted promises must be explained in `yanfu-notes.md`.
+- 重要标题、用户结果、证明和 CTA 都必须有来源。
+- `观察所得` 只能支持界面中可见的事实。
+- `需要确认` 的内容不得进入 `landing.html`。
+- 重要承诺被删除时，必须在 `yanfu-notes.md` 中说明。
 
-## Four-Layer Translation
+## 四层翻译法
 
-Translate each important product capability through four layers:
+把每项重要产品能力依次翻译为：
 
-1. **Feature:** what the product is or contains.
-2. **User action:** what the user can do.
-3. **User result:** what changes for the user.
-4. **Repeatable expression:** a concrete sentence a stranger can remember and retell.
+1. **功能：** 产品是什么或具有什么能力。
+2. **用户动作：** 用户可以做什么。
+3. **用户结果：** 用户因此发生什么变化。
+4. **可复述表达：** 陌生用户能够记住并转述的具体句子。
 
-Example:
+示例：
 
-| Layer | Expression |
+| 层级 | 表达 |
 | --- | --- |
-| Feature | 5GB portable music player |
-| User action | Carry and play a personal music library |
-| User result | Music follows the user without carrying discs |
-| Repeatable expression | 1000 songs in your pocket |
+| 功能 | 5GB 便携式音乐播放器 |
+| 用户动作 | 随身携带并播放个人音乐库 |
+| 用户结果 | 不带光盘也能让音乐随身同行 |
+| 可复述表达 | 1000 首歌，装进口袋 |
 
-The repeatable expression must remain faithful to the previous three layers.
+可复述表达必须忠于前三层，不能为了好听而增加新的承诺。
 
-## Story Reordering
+## 故事重排
 
-Use the user's comprehension path rather than the developer's implementation path.
+按照用户理解路径，而不是开发实现路径来组织页面。
 
-Default sequence:
+默认顺序：
 
-1. What this is and the immediate value.
-2. The recognizable user situation.
-3. How the product works in user language.
-4. The strongest product interface.
-5. The concrete result.
-6. Available proof.
-7. Objections and FAQ.
-8. One clear next action.
+1. 产品是什么，以及最直接的价值。
+2. 用户能够认出的真实处境。
+3. 用用户语言解释产品如何工作。
+4. 最能证明价值的产品界面。
+5. 具体用户结果。
+6. 当前可用的证明。
+7. 异议与 FAQ。
+8. 一个清晰的下一步行动。
 
-Remove unavailable stages instead of inventing content.
+没有材料支持的阶段直接删除，不得发明内容补齐。
 
-## Noise Removal
+## 删除杂音
 
-Usually compress or delete:
+通常压缩或删除：
 
-- Repeated feature lists.
-- Empty superlatives.
-- Unsupported performance claims.
-- Internal architecture before user value.
-- Multiple equivalent CTA labels.
-- Decorative sections that delay product evidence.
+- 重复功能列表。
+- 空泛的最高级形容。
+- 没有证据的效果承诺。
+- 早于用户价值出现的内部架构。
+- 多个含义相同的 CTA。
+- 延迟产品证据出现的装饰区块。
 
-Never hide a consequential deletion from the notes.
+重要删减不得在译注中隐瞒。
 
-## Retelling Test
+## 复述测试
 
-After drafting, check whether a stranger can answer:
+完成草稿后，检查陌生用户能否回答：
 
-- What is the product?
-- Who is it for?
-- What can the user do?
-- What result does it create?
-- What should the user do next?
+- 这是什么产品？
+- 它为谁服务？
+- 用户可以做什么？
+- 它带来什么结果？
+- 用户下一步该做什么？
 
-If the answer requires internal terminology, translate again.
+如果回答必须依赖内部术语，继续翻译。

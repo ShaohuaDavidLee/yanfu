@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate a Yanfu v0.1 landing-page delivery."""
+"""校验严复 v0.1 的 Landing Page 交付目录。"""
 
 import argparse
 from html.parser import HTMLParser
@@ -50,9 +50,9 @@ def validate(output_dir):
     notes_path = output_dir / "yanfu-notes.md"
 
     if not landing_path.is_file():
-        errors.append("missing required file: landing.html")
+        errors.append("缺少必需文件：landing.html")
     if not notes_path.is_file():
-        errors.append("missing required file: yanfu-notes.md")
+        errors.append("缺少必需文件：yanfu-notes.md")
     if errors:
         return errors
 
@@ -61,41 +61,41 @@ def validate(output_dir):
     parser.feed(html)
 
     if not parser.has_viewport:
-        errors.append("landing.html missing viewport meta")
+        errors.append("landing.html 缺少 viewport meta")
     if parser.h1_count != 1:
         errors.append(
-            "landing.html must contain exactly one h1 "
-            f"(found {parser.h1_count})"
+            "landing.html 必须且只能包含一个 h1 "
+            f"（当前为 {parser.h1_count} 个）"
         )
 
     for resource in parser.local_resources:
         clean_path = resource.split("?", 1)[0].split("#", 1)[0]
         if not (output_dir / clean_path).is_file():
-            errors.append(f"missing local asset: {resource}")
+            errors.append(f"缺少本地资源：{resource}")
 
     notes = notes_path.read_text(encoding="utf-8")
     for section in REQUIRED_NOTES_SECTIONS:
         if not re.search(rf"^##\s+{re.escape(section)}\s*$", notes, re.MULTILINE):
-            errors.append(f"missing notes section: {section}")
+            errors.append(f"译注缺少章节：{section}")
 
     return errors
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Validate landing.html and yanfu-notes.md.",
+        description="校验 landing.html 与 yanfu-notes.md。",
     )
-    parser.add_argument("output_dir", help="Directory containing the Yanfu delivery")
+    parser.add_argument("output_dir", help="包含严复交付文件的目录")
     args = parser.parse_args()
 
     errors = validate(args.output_dir)
     if errors:
-        print("Yanfu delivery invalid:")
+        print("严复交付校验失败：")
         for error in errors:
             print(f"- {error}")
         return 1
 
-    print("Yanfu delivery valid")
+    print("严复交付校验通过")
     return 0
 
 

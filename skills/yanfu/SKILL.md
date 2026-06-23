@@ -1,185 +1,185 @@
 ---
 name: yanfu
-description: Use when a developer provides an existing public Landing Page and 1–5 product screenshots and wants the structure and copy translated into a clearer user-facing landing page without changing positioning or inventing claims.
+description: 用于开发者提供已有的公开 Landing Page 和 1–5 张产品截图，希望在不修改定位、不发明承诺的前提下，把页面结构与文案翻译成用户更容易理解的产品故事。
 ---
 
 # 严复 Skill
 
-## Purpose
+## 目标
 
-Translate a developer-view Landing Page into a page users can understand and retell quickly.
+把开发者视角的 Landing Page，翻译成用户能够快速听懂、记住并复述的页面。
 
-Apply three principles:
+遵循三条原则：
 
-- **信:** preserve product facts, original positioning, and real capabilities.
-- **达:** translate features and mechanisms into visible user actions and results.
-- **雅:** improve structure, rhythm, and clarity without letting style outrun evidence.
+- **信：** 忠于产品事实、原始定位和真实能力。
+- **达：** 把功能与机制翻译成用户可见的动作和结果。
+- **雅：** 改善结构、节奏和表达，但不能让修辞越过证据。
 
-The core rule is: **preserve the product, translate the story.**
+核心规则：**不改产品，只翻译故事。**
 
-## Required Input
+## 必要输入
 
-Require both:
+必须同时具备：
 
-1. One public Landing Page URL.
-2. 1–5 core product screenshots.
+1. 一个公开可访问的 Landing Page URL。
+2. 1–5 张核心产品截图。
 
-Optional input:
+可选输入：
 
-- The one idea the developer most wants users to understand.
-- The primary CTA and its real destination.
-- Logo, fonts, or other brand assets.
-- Content that must remain unchanged.
+- 开发者最希望用户理解的一句话。
+- 主要 CTA 及其真实链接。
+- Logo、字体或其他品牌素材。
+- 不允许修改或删除的内容。
 
-Handle incomplete input narrowly:
+输入不完整时：
 
-- **Only URL:** request 1–5 core product screenshots; do not register or log in.
-- **Only screenshots:** request the public Landing Page URL.
-- Inaccessible page, unrelated screenshots, or unclear value proposition: stop and request only the minimum missing evidence.
+- **只有 URL：** 请求 1–5 张核心产品截图；不得自行注册或登录。
+- **只有截图：** 请求公开 Landing Page URL。
+- 页面无法访问、截图与产品无明显关系，或核心价值主张无法确认：停止生成最终页面，只请求最少的补充证据。
 
-Do not use generic marketing knowledge to fill product-fact gaps.
+不得用通用营销常识填补产品事实缺口。
 
-## Scope Boundaries
+## 范围边界
 
-- Do not reposition the product.
-- Do not change the target audience.
-- Do not invent claims, metrics, testimonials, customers, or capabilities.
-- Do not perform competitor analysis.
-- Do not judge whether the product should exist.
-- Do not broadly redesign the visual identity.
-- Do not independently generate pitch decks or multiple pitch lengths in v0.1.
+- 不得重新定位产品。
+- 不得修改目标用户。
+- 不得发明承诺、数据、客户评价、客户案例或产品能力。
+- 不得进行竞品分析。
+- 不得判断产品是否值得做。
+- 不得大范围重做视觉识别。
+- v0.1 不独立生成 Pitch Deck 或多种时长的 Pitch。
 
-Preserve the brand name, logo, main colors, typography character, product screenshots, component language, real CTA, and overall visual personality by default.
+默认保留品牌名称、Logo、主色、字体气质、产品截图、组件语言、真实 CTA 和整体视觉性格。
 
-Adjust only the story hierarchy, section order, copy, screenshot emphasis, whitespace, and restrained accessibility or responsive fixes.
+只调整故事层级、Section 顺序、文案、截图强调、留白，以及必要且克制的无障碍和响应式问题。
 
-## Workflow
+## 工作流程
 
-### 1. Confirm Evidence
+### 1. 确认证据
 
-Read [references/evidence-and-browsing.md](references/evidence-and-browsing.md).
+读取 [references/evidence-and-browsing.md](references/evidence-and-browsing.md)。
 
-Inspect the public page and provided screenshots. Separate:
+检查公开页面和产品截图，区分：
 
-- Explicit page claims.
-- Facts visibly supported by product screenshots.
-- Developer-supplied facts.
-- Unverified assumptions.
+- 原页面明确声明的内容。
+- 产品截图可见的事实。
+- 开发者补充并确认的事实。
+- 尚未验证的推断。
 
-Do not proceed to final output when the core product promise cannot be supported.
+核心产品承诺无法获得证据支持时，不得继续生成最终页面。
 
-### 2. Extract the Original Story
+### 2. 提取原始故事
 
-Record:
+记录：
 
-- Product definition.
-- Stated user.
-- Core value proposition.
-- Features and usage mechanism.
-- User results.
-- Proof, metrics, testimonials, and customers.
-- Primary CTA and real links.
-- Brand and visual elements.
+- 产品如何定义自己。
+- 开发者声明的目标用户。
+- 核心价值主张。
+- 功能和使用机制。
+- 用户结果。
+- 数据、证明、评价和客户。
+- 主要 CTA 与真实链接。
+- 品牌与视觉元素。
 
-Treat every claim as unverified until its source is known.
+每项承诺在找到依据前都视为未验证。
 
-### 3. Build the Translation Ledger
+### 3. 建立翻译底稿
 
-Read [references/translation-method.md](references/translation-method.md).
+读取 [references/translation-method.md](references/translation-method.md)。
 
-Create an internal translation ledger before writing the page. Every important new expression must have:
+写页面前先建立内部翻译底稿。每项重要新表达必须记录：
 
-- New expression.
-- Source evidence.
-- Treatment.
-- Confidence.
+- 新页面表达。
+- 原始依据。
+- 处理方式。
+- 置信度。
 
-Exclude unsupported expressions from `landing.html`. Put unresolved items under `待确认` in the notes.
+没有依据的表达不得进入 `landing.html`。未解决内容放入译注的 `待确认`。
 
-### 4. Reorder the Story
+### 4. 重排产品故事
 
-Start with this default sequence:
+默认顺序：
 
-> Hero → user situation → product mechanism → core interface → user result → proof → FAQ → CTA
+> Hero → 用户处境 → 产品机制 → 核心界面 → 用户结果 → 证明 → FAQ → CTA
 
-Delete or reorder sections when the evidence calls for it. Never add a section merely to complete the template.
+根据证据删除或调整区块，不为凑齐模板而添加内容。
 
-Prefer a concrete, repeatable expression over a technical category description. Translate through:
+优先使用具体、可复述的表达，而不是技术分类描述。按下面的路径翻译：
 
-> Feature → User action → User result → Repeatable expression
+> 功能 → 用户动作 → 用户结果 → 可复述表达
 
-### 5. Build the Landing Page
+### 5. 生成 Landing Page
 
-Read [references/output-spec.md](references/output-spec.md).
+读取 [references/output-spec.md](references/output-spec.md)。
 
-Create a responsive, directly openable `landing.html`.
+生成响应式、可直接打开的 `landing.html`。
 
-Requirements:
+要求：
 
-- Use original legally accessible brand assets and provided product screenshots.
-- Keep real links and CTA destinations working.
-- Keep one clear H1 and a legible first viewport.
-- Show product evidence early enough to support the main promise.
-- Remove repeated features, empty slogans, unsupported outcomes, premature implementation detail, and distracting decoration.
-- Do not expose the internal ledger, confidence labels, or consulting language in the page.
+- 使用原页面中可合法获取的品牌素材和用户提供的产品截图。
+- 保持主要链接和 CTA 真实可用。
+- 只使用一个清晰的 H1，首屏必须可读。
+- 尽早展示足以支持核心承诺的产品证据。
+- 删除重复功能、空泛口号、无依据结果、过早出现的实现细节和妨碍理解的装饰。
+- 页面中不得显示内部翻译底稿、置信度或咨询式分析。
 
-### 6. Write the Translation Notes
+### 6. 撰写严复译注
 
-Create `yanfu-notes.md` with the exact top-level sections:
+生成 `yanfu-notes.md`，使用以下一级章节：
 
 - `信`
 - `达`
 - `雅`
 - `待确认`
 
-Keep it concise, normally about one page. Explain consequential preservation, rewriting, deletion, and restrained visual changes.
+通常控制在一页左右，说明重要内容的保留、改写、删除和克制的视觉调整。
 
-### 7. Validate and Preview
+### 7. 校验与预览
 
-Run:
+运行：
 
 ```bash
 python3 /path/to/yanfu/scripts/validate_delivery.py /path/to/output
 ```
 
-Fix every reported error.
+修复所有错误。
 
-When a browser is available:
+浏览器可用时：
 
-- Open the generated page.
-- Check desktop and mobile layouts.
-- Verify CTA links and local assets.
-- Check for overflow, overlap, unreadable screenshots, and broken hierarchy.
+- 打开生成页面。
+- 检查桌面端与移动端。
+- 验证 CTA、外链和本地资源。
+- 检查溢出、遮挡、截图不可读和信息层级问题。
 
-Do not claim completion from source inspection alone.
+不得只检查源代码就宣称交付完成。
 
-## Delivery
+## 交付
 
-Return:
+依次返回：
 
-1. The local preview link or path to `landing.html`.
-2. The path to `yanfu-notes.md`.
-3. One short sentence naming anything the developer must still confirm.
+1. `landing.html` 的本地预览链接或路径。
+2. `yanfu-notes.md` 的路径。
+3. 一句话说明仍需开发者确认的最高优先级内容。
 
-Return the page first. Do not paste the full HTML into chat unless the user explicitly asks for source code.
+优先返回页面。除非用户明确要求源代码，否则不要在对话中粘贴完整 HTML。
 
-## Quick Reference
+## 快速判断
 
-| Situation | Action |
+| 情况 | 行动 |
 | --- | --- |
-| Page and screenshots are complete | Start immediately |
-| Page exists, screenshots missing | Request 1–5 screenshots |
-| Screenshots exist, page missing | Request the public URL |
-| Page requires login | Ask for an exported page, article, or screenshots |
-| Claim lacks evidence | Omit from page; list under `待确认` |
-| Original design is usable | Preserve it and change structure/copy |
-| Original design blocks comprehension | Make the smallest necessary visual fix |
+| 页面与截图完整 | 直接开始 |
+| 有页面、缺截图 | 请求 1–5 张截图 |
+| 有截图、缺页面 | 请求公开 URL |
+| 页面必须登录 | 请求导出页面、介绍文章或截图 |
+| 承诺缺乏证据 | 不写入页面，列入 `待确认` |
+| 原设计可用 | 保留视觉，只改结构和文案 |
+| 原设计妨碍理解 | 进行最小必要修正 |
 
-## Common Mistakes
+## 常见错误
 
-- Diagnosing positioning instead of translating expression.
-- Replacing the product's words with generic startup copy.
-- Treating a visible interface as proof of speed, accuracy, or satisfaction.
-- Inventing an ideal user story not supported by the source.
-- Redesigning the brand because a cleaner style is possible.
-- Delivering commentary instead of a usable HTML page.
+- 把故事翻译变成产品定位诊断。
+- 用通用创业文案替换产品原本的语言。
+- 把可见界面当成效率、准确率或满意度证明。
+- 发明原始材料中不存在的理想用户故事。
+- 因为存在更美的方案就重做品牌。
+- 只交付评价，不交付可用 HTML 页面。

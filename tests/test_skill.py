@@ -28,49 +28,50 @@ class YanfuSkillContract(unittest.TestCase):
             for line in frontmatter.splitlines()
             if line.startswith("description:")
         )
-        self.assertTrue(description.startswith("Use when"))
+        self.assertTrue(description.startswith("用于"))
         self.assertIn("Landing Page", description)
-        self.assertIn("screenshots", description)
+        self.assertIn("产品截图", description)
 
         interface = read(AGENT_YAML)
         self.assertIn('display_name: "严复 Skill"', interface)
         self.assertIn("$yanfu", interface)
+        self.assertIn("用 $yanfu", interface)
 
     def test_input_contract_and_incomplete_input_behavior(self):
         text = read(SKILL_MD)
-        self.assertIn("public Landing Page URL", text)
-        self.assertIn("1–5 core product screenshots", text)
-        self.assertIn("Only URL", text)
-        self.assertIn("Only screenshots", text)
-        self.assertIn("do not register or log in", text)
+        self.assertIn("公开可访问的 Landing Page URL", text)
+        self.assertIn("1–5 张核心产品截图", text)
+        self.assertIn("只有 URL", text)
+        self.assertIn("只有截图", text)
+        self.assertIn("不得自行注册或登录", text)
 
     def test_scope_boundaries_are_explicit(self):
         text = read(SKILL_MD)
         for rule in (
-            "Do not reposition the product",
-            "Do not change the target audience",
-            "Do not invent claims",
-            "Do not perform competitor analysis",
-            "Do not judge whether the product should exist",
-            "Do not broadly redesign the visual identity",
+            "不得重新定位产品",
+            "不得修改目标用户",
+            "不得发明承诺",
+            "不得进行竞品分析",
+            "不得判断产品是否值得做",
+            "不得大范围重做视觉识别",
         ):
             self.assertIn(rule, text)
 
     def test_workflow_requires_evidence_ledger(self):
         text = read(SKILL_MD)
-        self.assertIn("translation ledger", text)
+        self.assertIn("翻译底稿", text)
         method = read(SKILL_DIR / "references" / "translation-method.md")
         for field in (
-            "New expression",
-            "Source evidence",
-            "Treatment",
-            "Confidence",
+            "新页面表达",
+            "原始依据",
+            "处理方式",
+            "置信度",
         ):
             self.assertIn(field, method)
-        self.assertIn("Feature", method)
-        self.assertIn("User action", method)
-        self.assertIn("User result", method)
-        self.assertIn("Repeatable expression", method)
+        self.assertIn("功能", method)
+        self.assertIn("用户动作", method)
+        self.assertIn("用户结果", method)
+        self.assertIn("可复述表达", method)
 
     def test_output_contract_and_references(self):
         text = read(SKILL_MD)
@@ -139,7 +140,7 @@ class DeliveryValidatorContract(unittest.TestCase):
             result = self.run_validator(output)
 
             self.assertEqual(0, result.returncode, result.stdout + result.stderr)
-            self.assertIn("Yanfu delivery valid", result.stdout)
+            self.assertIn("严复交付校验通过", result.stdout)
 
     def test_validator_rejects_missing_evidence_and_notes_sections(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -154,8 +155,8 @@ class DeliveryValidatorContract(unittest.TestCase):
 
             self.assertNotEqual(0, result.returncode)
             self.assertIn("viewport", result.stdout)
-            self.assertIn("missing local asset", result.stdout)
-            self.assertIn("missing notes section", result.stdout)
+            self.assertIn("缺少本地资源", result.stdout)
+            self.assertIn("译注缺少章节", result.stdout)
 
 
 if __name__ == "__main__":

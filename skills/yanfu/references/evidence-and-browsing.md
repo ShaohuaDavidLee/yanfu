@@ -1,63 +1,63 @@
-# Evidence And Browsing
+# 证据与页面阅读
 
-## Evidence Priority
+## 证据优先级
 
-Use evidence in this order:
+按以下顺序使用证据：
 
-1. Developer-confirmed facts and explicit restrictions.
-2. Claims and links on the public Landing Page.
-3. Visible facts in the provided product screenshots.
-4. Clearly labeled inference needed only to organize existing facts.
+1. 开发者确认的事实与明确限制。
+2. 公开 Landing Page 上的承诺和链接。
+3. 产品截图中可见的事实。
+4. 只用于组织已有事实、且明确标记的推断。
 
-Never upgrade an inference into a product claim.
+不得把推断升级为产品承诺。
 
-## Public Page Inspection
+## 阅读公开页面
 
-Use the available browser to inspect the supplied public URL. Capture the first screen and relevant sections when visual hierarchy or brand extraction matters.
+使用当前可用的浏览器检查用户提供的公开 URL。视觉层级或品牌提取会影响结果时，截取首屏和相关 Section。
 
-Collect:
+收集：
 
-- Page title, H1, supporting copy, CTA, and navigation.
-- Product screenshots and captions.
-- Feature, result, proof, pricing, FAQ, and testimonial sections.
-- Logo, primary colors, typography character, button style, spacing, and visual density.
-- Real destinations for the primary CTA and important links.
+- 页面标题、H1、支持文案、CTA 和导航。
+- 产品截图与说明。
+- 功能、结果、证明、价格、FAQ 和客户评价。
+- Logo、主色、字体气质、按钮样式、间距和视觉密度。
+- 主要 CTA 和重要链接的真实去向。
 
-Do not silently substitute search snippets or third-party summaries for the supplied page.
+不得悄悄用搜索摘要或第三方介绍代替用户提供的页面。
 
-## Login Boundary
+## 登录边界
 
-Do not register or log in to explore the product.
+不得自行注册或登录产品。
 
-When the useful product experience is behind authentication, request one of:
+核心体验位于登录后时，请求以下材料之一：
 
-- 1–5 additional core product screenshots.
-- A screen recording.
-- An exported product page.
-- A short introduction article.
+- 1–5 张额外的核心产品截图。
+- 屏幕录制。
+- 导出的产品页面。
+- 简短的产品介绍文章。
 
-## Screenshot Evidence
+## 截图能证明什么
 
-A screenshot may support:
+截图可以支持：
 
-- What the user inputs.
-- What action the product makes available.
-- What result or artifact is visibly returned.
-- Which interface best demonstrates the product's stated mechanism.
+- 用户输入什么。
+- 产品提供什么操作。
+- 用户可见地得到什么结果或产物。
+- 哪个界面最能证明产品声明的工作机制。
 
-A screenshot alone does not support:
+截图不能单独支持：
 
-- Time saved.
-- Accuracy.
-- Conversion improvement.
-- User satisfaction.
-- Scale, reliability, or market adoption.
+- 节省多少时间。
+- 准确率。
+- 转化提升。
+- 用户满意度。
+- 规模、稳定性或市场采用情况。
 
-## Stop Conditions
+## 停止条件
 
-Stop final generation and request minimal evidence when:
+出现以下情况时停止最终生成，只请求最少的补充证据：
 
-- The page is inaccessible.
-- The screenshot belongs to another product or cannot be connected to the page.
-- The primary product promise is missing or contradictory.
-- A required claim depends on data the developer did not provide.
+- 页面无法访问。
+- 截图属于其他产品，或无法与页面建立联系。
+- 核心产品承诺缺失或相互矛盾。
+- 必要承诺依赖开发者尚未提供的数据。

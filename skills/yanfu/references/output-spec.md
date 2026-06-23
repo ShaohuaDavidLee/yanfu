@@ -1,39 +1,39 @@
-# Output Specification
+# 输出规范
 
-## Output Folder
+## 输出目录
 
-Produce:
+生成：
 
 ```text
 output/
 ├── landing.html
 ├── yanfu-notes.md
-└── assets/                 # only when local assets are needed
+└── assets/                 # 只有需要本地资源时才创建
 ```
 
-`landing.html` may also reference user-provided assets outside `assets/` when the final folder remains portable and all paths resolve.
+只要最终目录可整体移动且所有路径有效，`landing.html` 也可以引用 `assets/` 之外的用户素材。
 
 ## landing.html
 
-Requirements:
+要求：
 
-- Single responsive HTML entry point.
-- `lang` attribute and viewport metadata.
-- Exactly one H1.
-- Clear product identity, user value, and primary CTA in the first viewport.
-- Original brand character and real product screenshots.
-- Working primary links and local assets.
-- No internal confidence labels or translation commentary.
-- No invented metrics, testimonials, customer logos, or capabilities.
-- No unnecessary framework or build step when plain HTML/CSS is sufficient.
+- 单一、响应式 HTML 入口。
+- 包含 `lang` 属性和 viewport 元数据。
+- 只有一个 H1。
+- 首屏说清产品身份、用户价值和主要 CTA。
+- 保留原品牌气质和真实产品截图。
+- 主要链接和本地资源可用。
+- 不显示内部置信度或翻译分析。
+- 不发明数据、评价、客户 Logo 或产品能力。
+- 普通 HTML/CSS 足够时，不引入不必要的框架和构建步骤。
 
-The exact section order varies by evidence. Prefer:
+具体 Section 顺序由证据决定，优先采用：
 
-> Hero → situation → mechanism → interface → result → proof → FAQ → CTA
+> Hero → 用户处境 → 产品机制 → 核心界面 → 用户结果 → 证明 → FAQ → CTA
 
 ## yanfu-notes.md
 
-Use this structure:
+使用以下结构：
 
 ```markdown
 # 严复译注
@@ -60,14 +60,14 @@ Use this structure:
 - 暂未进入页面：
 ```
 
-Keep notes concise. Use `无` when a subsection has no items.
+译注保持简洁。没有内容的项目写 `无`。
 
-## Completion Message
+## 完成时的回复
 
-Return:
+依次返回：
 
-1. `landing.html` preview/path.
-2. `yanfu-notes.md` path.
-3. One sentence containing the highest-priority confirmation, or state that no confirmation remains.
+1. `landing.html` 的预览链接或路径。
+2. `yanfu-notes.md` 的路径。
+3. 一句话说明最高优先级的待确认内容；没有时明确说明无需确认。
 
-Do not replace file delivery with a long critique.
+不得用长篇评价代替文件交付。

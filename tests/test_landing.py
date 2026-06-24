@@ -57,7 +57,6 @@ class LandingPageContract(unittest.TestCase):
         for section_id in (
             "comparison",
             "principles",
-            "process",
             "cases",
             "download",
             "family",
@@ -88,8 +87,10 @@ class LandingPageContract(unittest.TestCase):
             self.assertIn("alt", image)
             self.assertFalse(image.get("src", "").startswith("data:"))
 
-    def test_unpublished_download_does_not_fake_a_file(self):
-        self.assertIn("Skill 完成后开放下载", self.html)
+    def test_download_section_is_prompt_entry_not_fake_file(self):
+        self.assertIn("粘贴落地页链接", self.html)
+        self.assertIn("上传产品截图", self.html)
+        self.assertIn("复制提示词", self.html)
         self.assertNotIn('download="', self.html)
 
     def test_single_h1(self):

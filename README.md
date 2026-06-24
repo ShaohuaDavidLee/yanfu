@@ -1,4 +1,6 @@
 # 严复 Skill：你的产品故事翻译官
+<img width="1638" height="687" alt="image" src="https://github.com/user-attachments/assets/a14785cf-7ef6-4749-9e95-c6c181cfe9a5" />
+
 
 把你的“开发者视角”落地页，翻译成用户 5 秒能懂的落地页。
 
@@ -106,30 +108,3 @@
 - `landing/index.html`：严复官网首页，可作为静态站点部署。
 - `landing/assets/bundle/`：官网页面的图片、字体与运行时资源。
 - `tests/`：Skill 与官网页面的契约测试。
-
-## 本地预览官网
-
-```bash
-cd landing
-python3 -m http.server 4173
-```
-
-然后打开 `http://127.0.0.1:4173/`。
-
-## Cloudflare Pages 部署
-
-推荐用 Cloudflare Pages 部署静态站点：
-
-- Framework preset: `None`
-- Build command: 留空
-- Build output directory: `landing`
-- Root directory: 仓库根目录
-
-自定义域名可以放到草诀歌官方入口矩阵里，例如与 `simaqian.caojuege.com`、`b.caojuege.com` 同级。
-
-## 验证
-
-```bash
-python3 -m unittest discover -s tests -v
-python3 /Users/aroma/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/yanfu
-```

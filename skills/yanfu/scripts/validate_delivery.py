@@ -9,7 +9,7 @@ import sys
 from urllib.parse import urlparse
 
 
-REQUIRED_NOTES_SECTIONS = ("信", "达", "雅", "待确认")
+REQUIRED_NOTES_SECTIONS = ("信", "达", "电梯演讲", "雅", "待确认")
 
 
 class LandingParser(HTMLParser):

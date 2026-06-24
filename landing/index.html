@@ -5617,6 +5617,7 @@
               <label style="margin-top:14px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; min-height:104px; padding:18px; border:1px dashed rgba(71,73,75,0.5); background:rgba(255,255,255,0.4); cursor:pointer; text-align:center; transition:border-color 160ms ease,background 160ms ease;" style-hover="border-color:#1a1a1a; background:rgba(255,255,255,0.6);">
                 <span style="font-family:'Noto Serif SC',serif; font-size:15px; color:#47494b;">点击上传 1–5 张核心界面截图</span>
                 <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; color:#8b949e;">PNG / JPG · 已选 {{ shotCount }}/5</span>
+                <span style="font-family:'Noto Serif SC',serif; font-size:12px; color:#686a6b;">截图无法进入剪贴板文本，复制提示词后请手动把截图附加给你的 agent。</span>
                 <input type="file" accept="image/*" multiple="" onchange="{{ onPick }}" style="display:none;">
               </label>
               <sc-if value="{{ hasShots }}" hint-placeholder-val="{{ false }}">
@@ -5630,6 +5631,7 @@
             <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#a8302d;">STEP 03</span>
             <h3 style="margin:8px 0 0; font-family:'Noto Serif SC',serif; font-size:20px;">复制提示词，交给严复</h3>
             <textarea readonly="" value="{{ promptText }}" style="flex:1; margin-top:14px; min-height:208px; padding:16px; border:1px solid rgba(71,73,75,0.42); background:rgba(255,255,255,0.6); color:#47494b; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.75; resize:none; outline:none;"></textarea>
+            <p style="margin:12px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:12px; line-height:1.7;">复制文本后，手动把截图作为附件一起发给你的 agent；严复会忠于原 Landing Page 的设计风格，不要重新设计。</p>
             <button type="button" onclick="{{ copyPrompt }}" style="margin-top:14px; min-height:50px; border:1px solid #1a1a1a; background:#1a1a1a; color:#ececea; font-family:'Noto Serif SC',serif; font-size:15px; font-weight:600; letter-spacing:0.03em; cursor:pointer; transition:background 160ms ease;" style-hover="background:#000;">{{ copyLabel }}</button>
           </div>
         </div>
@@ -5705,19 +5707,23 @@ class Component extends DCLogic {
   buildPrompt() {
     const url = (this.state.url || '').trim() || '（在此粘贴你的落地页链接）';
     const n = this.state.shots.length;
-    const shots = n ? `已附 ${n} 张` : '（随附 1–5 张核心界面截图）';
+    const shots = n ? `页面已选择 ${n} 张；截图无法进入剪贴板文本，请手动把截图附加给你的 agent。` : '（请手动附加 1–5 张核心界面截图；截图无法进入剪贴板文本。）';
     return [
       '你是严复，产品故事翻译官。请把下面这个「开发者视角」的落地页，翻译成用户 5 秒能懂的落地页。',
       '',
+      '严复 Skill 安装地址：https://github.com/ShaohuaDavidLee/yanfu',
+      '',
       `原文链接：${url}`,
       `产品截图：${shots}`,
+      '',
+      '硬性边界：不要重新设计。请忠于原 Landing Page 的设计风格，保留原品牌气质、主色、字体气质、组件语言和视觉密度；暂不把产品截图当作视觉设计来源，截图只用于理解产品事实与界面证据。',
       '',
       '翻译三则：',
       '一、信——只忠于以上材料里的事实，不重定位、不夸大、不替产品发明价值；',
       '二、达——让陌生用户 5 秒内明白产品是什么、为谁服务、解决什么；',
       '三、雅——结构清楚、表达克制，并能一句话传播。',
       '',
-      '请输出 landing.html 与 yanfu-notes.md。',
+      '请输出 landing.html 与 yanfu-notes.md。yanfu-notes.md 中请包含：信、达、电梯演讲、雅、待确认。',
     ].join('\n');
   }
 

@@ -91,6 +91,11 @@ class LandingPageContract(unittest.TestCase):
         self.assertIn("粘贴落地页链接", self.html)
         self.assertIn("上传产品截图", self.html)
         self.assertIn("复制提示词", self.html)
+        self.assertIn("https://github.com/ShaohuaDavidLee/yanfu", self.html)
+        self.assertIn("截图无法进入剪贴板文本", self.html)
+        self.assertIn("请手动把截图附加给你的 agent", self.html)
+        self.assertIn("不要重新设计", self.html)
+        self.assertIn("忠于原 Landing Page 的设计风格", self.html)
         self.assertNotIn('download="', self.html)
 
     def test_single_h1(self):

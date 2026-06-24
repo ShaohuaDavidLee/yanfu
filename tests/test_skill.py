@@ -82,8 +82,10 @@ class YanfuSkillContract(unittest.TestCase):
         self.assertIn("references/output-spec.md", text)
 
         output_spec = read(SKILL_DIR / "references" / "output-spec.md")
-        for heading in ("## 信", "## 达", "## 雅", "## 待确认"):
+        for heading in ("## 信", "## 达", "## 电梯演讲", "## 雅", "## 待确认"):
             self.assertIn(heading, output_spec)
+        self.assertIn("不要重新设计", output_spec)
+        self.assertIn("忠于原 Landing Page 的设计风格", output_spec)
 
     def test_skill_contains_no_placeholders(self):
         combined = "\n".join(
@@ -128,6 +130,9 @@ class DeliveryValidatorContract(unittest.TestCase):
 ## 达
 一句话 Pitch 与故事顺序。
 
+## 电梯演讲
+30 秒内说清产品、对象、场景和结果。
+
 ## 雅
 保留原设计元素。
 
@@ -157,6 +162,7 @@ class DeliveryValidatorContract(unittest.TestCase):
             self.assertIn("viewport", result.stdout)
             self.assertIn("缺少本地资源", result.stdout)
             self.assertIn("译注缺少章节", result.stdout)
+            self.assertIn("电梯演讲", result.stdout)
 
 
 if __name__ == "__main__":

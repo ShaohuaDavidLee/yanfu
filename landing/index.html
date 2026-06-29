@@ -28,25 +28,13 @@
     section[data-screen-label] h2 + span { font-size: 9px !important; line-height: 1.7 !important; }
 
     #top { min-height: auto !important; padding: 0 !important; }
-    #top > div[aria-hidden] { top: 82px !important; right: 18px !important; font-size: 106px !important; opacity: 0.72 !important; }
-    #top > div:nth-of-type(2) { width: calc(100% - 36px) !important; min-height: 610px !important; grid-template-columns: 1fr !important; }
-    #top > div:nth-of-type(2) > sc-if,
-    #top > div:nth-of-type(2) > div[aria-hidden] { display: none !important; }
+    #top > div { width: calc(100% - 36px) !important; min-height: 610px !important; grid-template-columns: 1fr !important; }
+    #top > div > sc-if,
+    #top > div > div[aria-hidden] { display: none !important; }
     #top h1 { font-size: clamp(42px, 11vw, 62px) !important; line-height: 1.18 !important; }
     #top h1 + p { font-size: 18px !important; line-height: 1.75 !important; }
     #top p { max-width: 100% !important; }
     #top a { min-height: 48px !important; }
-
-    #comparison > div > div:nth-of-type(2) { grid-template-columns: 1fr !important; gap: 22px !important; }
-    #comparison > div > div:nth-of-type(2) > article { min-height: 0 !important; padding: 18px !important; }
-    #comparison > div > div:nth-of-type(2) > article > div:nth-child(2) { grid-template-rows: auto auto auto !important; padding: 26px 0 0 !important; gap: 20px !important; }
-    #comparison > div > div:nth-of-type(2) > article h3 { font-size: 32px !important; }
-    #comparison > div > div:nth-of-type(2) > div:nth-child(2) { min-height: 52px !important; flex-direction: row !important; gap: 14px !important; }
-    #comparison > div > div:nth-of-type(2) > div:nth-child(2) span { writing-mode: horizontal-tb !important; }
-    #comparison > div > div:nth-of-type(2) > div:nth-child(2) b { transform: rotate(90deg) !important; }
-    #comparison > div > div:nth-of-type(2) > div:nth-child(3) { grid-template-columns: 1fr !important; padding-right: 0 !important; }
-    #comparison > div > div:nth-of-type(2) > div:nth-child(3) > article { min-height: 0 !important; padding: 18px !important; }
-    #comparison > div > div:nth-of-type(2) > div:nth-child(3) aside { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 
     #principles > div > div:nth-of-type(2) { grid-template-columns: 1fr !important; }
     #principles article { min-height: 280px !important; padding: 30px 28px !important; border-right: 0 !important; border-bottom: 1px solid rgba(71,73,75,0.2) !important; }
@@ -57,8 +45,6 @@
     #cases article { padding: 24px 20px 28px !important; border-right: 0 !important; border-bottom: 1px solid rgba(71,73,75,0.2) !important; }
     #cases article:last-child { border-bottom: 0 !important; }
     #cases article > div:first-child { align-items: flex-start !important; flex-direction: column !important; gap: 4px !important; }
-    #cases article > div:nth-child(3) { padding: 10px !important; }
-    #cases img { width: 100% !important; height: auto !important; }
 
     #download > div > div:nth-of-type(2),
     #download > div > div:nth-of-type(3) { grid-template-columns: 1fr !important; }
@@ -83,26 +69,20 @@
     header > div { width: calc(100% - 28px) !important; }
     header nav a:last-child { font-size: 12px !important; padding: 7px 10px !important; }
     section[data-screen-label] > div:not([aria-hidden]),
-    #top > div:nth-of-type(2),
+    #top > div,
     #family > div { width: calc(100% - 28px) !important; }
     main section[data-screen-label] { padding: 58px 0 !important; }
     #top { padding: 0 !important; }
-    #top > div:nth-of-type(2) { min-height: 580px !important; }
-    #top > div[aria-hidden] { font-size: 82px !important; right: 10px !important; }
+    #top > div { min-height: 580px !important; }
     #top h1 { font-size: clamp(37px, 11.5vw, 48px) !important; }
     #top h1 + p { font-size: 16px !important; }
     #top div[style*="display:flex"][style*="flex-wrap:wrap"] { align-items: stretch !important; flex-direction: column !important; }
     #top a { width: 100% !important; box-sizing: border-box !important; }
     section[data-screen-label] h2 { font-size: 25px !important; }
 
-    #comparison > div > div:nth-of-type(2) > article h3 { font-size: 27px !important; }
-    #comparison ul { font-size: 8px !important; line-height: 1.9 !important; }
-    #comparison > div > div:nth-of-type(2) > div:nth-child(3) aside { grid-template-columns: 1fr !important; }
-
     #principles article { min-height: 250px !important; padding: 28px 22px !important; }
     #cases article { padding: 22px 16px 26px !important; }
-    #cases article > div:nth-child(2) { flex-direction: column !important; align-items: flex-start !important; }
-    #cases article > div:nth-child(2) > div:first-child { width: 100% !important; }
+    #cases article div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
     #download > div > div:nth-of-type(2) > div,
     #download > div > div:nth-of-type(3) > div { padding: 24px 18px !important; }
     #download div[style*="grid-template-columns:repeat(5,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
@@ -5396,7 +5376,6 @@
   <main>
     <!-- HERO -->
     <section id="top" data-screen-label="Hero" style="position:relative; overflow:hidden; min-height:690px; border-bottom:1px solid rgba(71,73,75,0.2); background-image:linear-gradient(rgba(229,229,229,0.92),rgba(229,229,229,0.92)),url(&quot;assets/bundle/b8aa17e6-7595-4678-9067-d9d3a14b7c86.png&quot;); background-size:cover; background-position:center;">
-      <div aria-hidden="true" style="position:absolute; top:54px; right:54px; z-index:1; font-family:'Noto Serif SC',serif; font-weight:900; font-size:188px; line-height:0.84; writing-mode:vertical-rl; letter-spacing:0.04em; color:rgba(26,26,26,0.055); user-select:none; pointer-events:none;">严复</div>
       <div style="width:min(1180px,calc(100% - 64px)); min-height:690px; margin:0 auto; display:grid; grid-template-columns:minmax(320px,0.78fr) minmax(520px,1.32fr); align-items:center; gap:16px;">
         <sc-if value="{{ showPortrait }}" hint-placeholder-val="{{ true }}">
         <div aria-hidden="true" style="position:relative; align-self:stretch;">
@@ -5418,83 +5397,51 @@
       </div>
     </section>
 
-    <!-- COMPARISON -->
-    <section id="comparison" data-screen-label="Comparison" style="padding:88px 0; border-bottom:1px solid rgba(71,73,75,0.2);">
+    <!-- CASES (text-only examples) -->
+    <section id="cases" data-screen-label="Cases" style="padding:88px 0; border-bottom:1px solid rgba(71,73,75,0.2);">
       <div style="width:min(1180px,calc(100% - 64px)); margin:0 auto;">
         <div style="margin-bottom:42px; padding-bottom:15px; border-bottom:1px solid rgba(71,73,75,0.42); display:flex; align-items:flex-end; justify-content:space-between; gap:24px;">
-          <h2 style="margin:0; font-family:'Noto Serif SC',serif; font-size:30px; font-weight:700; line-height:1.2;">原文 / 译文（ipod经典案例）</h2>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#686a6b;">Source / Translation · 功能 → 动作 → 结果 → 可复述表达</span>
+          <h2 style="margin:0; font-family:'Noto Serif SC',serif; font-size:30px; font-weight:700; line-height:1.2;">翻译案例</h2>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#686a6b;">真实项目的用户视角改写</span>
         </div>
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); border:1px solid rgba(71,73,75,0.42);">
 
-        <div style="display:grid; grid-template-columns:minmax(0,1fr) 68px minmax(0,1fr); align-items:stretch; gap:20px;">
-          <!-- SOURCE -->
-          <article style="display:flex; flex-direction:column; min-height:560px; padding:22px; border:1px solid rgba(71,73,75,0.42); background:rgba(243,242,239,0.62);">
-            <div style="padding-bottom:15px; border-bottom:1px solid rgba(71,73,75,0.2); display:flex; align-items:center; justify-content:space-between; gap:12px; font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:0.08em;">
-              <strong>MusicBox</strong>
-              <span style="display:flex; gap:12px; color:#686a6b;"><span>产品</span><span>特性</span><span>技术</span><span>支持</span></span>
+          <article style="min-width:0; padding:28px 28px 30px; border-right:1px solid rgba(71,73,75,0.2);">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
+              <h3 style="margin:0; font-family:'Noto Serif SC',serif; font-size:21px;">Let’s Pod</h3>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:0.1em; color:#686a6b;">远程播客录音</span>
             </div>
-            <div style="flex:1; display:grid; grid-template-rows:150px 196px 1fr; padding:30px 8px 8px;">
-              <div>
-                <h3 style="margin:0 auto; text-align:center; font-family:'Noto Serif SC',serif; font-size:38px; line-height:1.25;">新一代便携式数字音乐播放器</h3>
+            <div style="margin-top:22px; display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+              <div style="min-height:168px; padding:18px; background:rgba(255,255,255,0.38); border:1px solid rgba(71,73,75,0.24);">
+                <p style="margin:0; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:#686a6b;">Before</p>
+                <p style="margin:14px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:13px; line-height:1.85;">功能点很多：远程录音、视频、协作、导出同时出现，用户不容易先记住它解决什么。</p>
               </div>
-              <div style="display:flex; align-items:center; justify-content:center;">
-                <img src="assets/bundle/2c3f3002-91bf-4084-8adb-db9c12bb79f5.png" alt="早期便携式数字音乐播放器示意" style="height:176px; width:auto; mix-blend-mode:multiply;">
+              <div style="min-height:168px; padding:18px; background:#1a1a1a; color:#ececea; border:1px solid #1a1a1a;">
+                <p style="margin:0; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(236,236,234,0.62);">After</p>
+                <p style="margin:14px 0 0; font-family:'Noto Serif SC',serif; font-size:15px; line-height:1.85;">一场远程对谈，两条本地音轨。主播不用解释技术栈，也能说清为什么录音更稳、更好剪。</p>
               </div>
-              <ul style="align-self:end; margin:0; padding:0; list-style:none; font-family:'JetBrains Mono',monospace; font-size:9px; line-height:2; color:#47494b;">
-                <li style="border-bottom:1px solid rgba(71,73,75,0.2);">存储容量：5GB 硬盘 · 约 1000 首</li>
-                <li style="border-bottom:1px solid rgba(71,73,75,0.2);">尺寸：103.5 × 61.8 × 10.4 mm · 续航 10 小时</li>
-                <li style="border-bottom:1px solid rgba(71,73,75,0.2);">接口：FireWire / USB · 格式 MP3 / AAC / WAV</li>
-              </ul>
             </div>
+            <p style="margin:18px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:13px; line-height:1.8;">从“功能很多的远程录音工具”，收束为“一场远程对谈，两条本地音轨”。</p>
           </article>
 
-          <!-- MARK -->
-          <div aria-label="翻译为" style="display:flex; align-items:center; justify-content:center; color:#a8302d; font-family:'JetBrains Mono',monospace; font-size:30px;">→</div>
-
-          <!-- TARGET -->
-          <article style="display:flex; flex-direction:column; min-height:560px; padding:22px; border:1px solid rgba(71,73,75,0.42); background:rgba(243,242,239,0.62);">
-            <div style="padding-bottom:15px; border-bottom:1px solid rgba(71,73,75,0.2); display:flex; align-items:center; justify-content:space-between; gap:12px; font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:0.08em;">
-              <strong>MusicBox</strong>
-              <span style="display:flex; gap:12px; color:#686a6b;"><span>为什么值得</span><span>如何使用</span></span>
+          <article style="min-width:0; padding:28px 28px 30px;">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
+              <h3 style="margin:0; font-family:'Noto Serif SC',serif; font-size:21px;">TransWeb</h3>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:0.1em; color:#686a6b;">AI 内容工作台</span>
             </div>
-            <div style="flex:1; display:grid; grid-template-rows:150px 196px 1fr; padding:30px 0 8px; text-align:center;">
-              <div>
-                <h3 style="margin:0 auto; font-family:'Noto Serif SC',serif; font-size:38px; line-height:1.25;">1000 首歌，<br>装进口袋。</h3>
+            <div style="margin-top:22px; display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+              <div style="min-height:168px; padding:18px; background:rgba(255,255,255,0.38); border:1px solid rgba(71,73,75,0.24);">
+                <p style="margin:0; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:#686a6b;">Before</p>
+                <p style="margin:14px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:13px; line-height:1.85;">项目、资产、版本和 AI 处理能力混在一起，像后台功能说明，不像用户能马上复述的价值。</p>
               </div>
-              <div style="display:flex; align-items:center; justify-content:center;">
-                <img src="assets/bundle/2c3f3002-91bf-4084-8adb-db9c12bb79f5.png" alt="放进口袋的便携式音乐播放器" style="height:176px; width:auto; mix-blend-mode:multiply;">
-              </div>
-              <div aria-label="用户能理解的核心价值" style="align-self:end; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(71,73,75,0.2);">
-                <div style="padding:14px 4px 0; border-right:1px solid rgba(71,73,75,0.2); font-size:11px;"><strong style="display:block; font-family:'Noto Serif SC',serif; font-size:15px;">1000 首歌</strong><span style="color:#686a6b;">随身音乐库</span></div>
-                <div style="padding:14px 4px 0; border-right:1px solid rgba(71,73,75,0.2); font-size:11px;"><strong style="display:block; font-family:'Noto Serif SC',serif; font-size:15px;">简单同步</strong><span style="color:#686a6b;">连接即可更新</span></div>
-                <div style="padding:14px 4px 0; font-size:11px;"><strong style="display:block; font-family:'Noto Serif SC',serif; font-size:15px;">10 小时</strong><span style="color:#686a6b;">一天都够用</span></div>
+              <div style="min-height:168px; padding:18px; background:#1a1a1a; color:#ececea; border:1px solid #1a1a1a;">
+                <p style="margin:0; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(236,236,234,0.62);">After</p>
+                <p style="margin:14px 0 0; font-family:'Noto Serif SC',serif; font-size:15px; line-height:1.85;">改到第 8 稿，也能回到最好的第 3 稿。创作者知道它解决的是返工和版本失控。</p>
               </div>
             </div>
+            <p style="margin:18px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:13px; line-height:1.8;">把版本管理能力，翻译成用户能立刻感知的结果：“改到第 8 稿，也能回到最好的第 3 稿”。</p>
           </article>
-        </div>
 
-        <!-- FOUR-LAYER LABELS (horizontal) -->
-        <div aria-label="四层翻译法" style="margin-top:20px; display:grid; grid-template-columns:repeat(4,1fr); border:1px solid rgba(71,73,75,0.42);">
-          <div style="position:relative; padding:22px 24px; border-right:1px solid rgba(71,73,75,0.2);">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#a8302d;">01</span>
-            <strong style="display:block; margin-top:10px; font-family:'Noto Serif SC',serif; font-size:19px;">功能</strong>
-            <span style="display:block; margin-top:4px; color:#686a6b; font-size:12px;">它是什么</span>
-          </div>
-          <div style="position:relative; padding:22px 24px; border-right:1px solid rgba(71,73,75,0.2);">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#a8302d;">02</span>
-            <strong style="display:block; margin-top:10px; font-family:'Noto Serif SC',serif; font-size:19px;">动作</strong>
-            <span style="display:block; margin-top:4px; color:#686a6b; font-size:12px;">用户如何使用</span>
-          </div>
-          <div style="position:relative; padding:22px 24px; border-right:1px solid rgba(71,73,75,0.2);">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#a8302d;">03</span>
-            <strong style="display:block; margin-top:10px; font-family:'Noto Serif SC',serif; font-size:19px;">结果</strong>
-            <span style="display:block; margin-top:4px; color:#686a6b; font-size:12px;">它带来什么价值</span>
-          </div>
-          <div style="position:relative; padding:22px 24px;">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#a8302d;">04</span>
-            <strong style="display:block; margin-top:10px; font-family:'Noto Serif SC',serif; font-size:19px;">可复述表达</strong>
-            <span style="display:block; margin-top:4px; color:#686a6b; font-size:12px;">一句能记住的话</span>
-          </div>
         </div>
       </div>
     </section>
@@ -5537,57 +5484,6 @@
               <h3 style="margin:22px 0 0; font-family:'Noto Serif SC',serif; font-size:21px; font-weight:600;">结构清楚，表达克制</h3>
               <p style="margin:14px 0 0; max-width:280px; color:#686a6b; font-family:'Noto Serif SC',serif; line-height:1.85;">修辞不能越过事实，设计不能盖过产品。但能一句话传播。</p>
             </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- CASES (only Let's Pod + TransWeb, real screenshots) -->
-    <section id="cases" data-screen-label="Cases" style="padding:88px 0; border-bottom:1px solid rgba(71,73,75,0.2);">
-      <div style="width:min(1180px,calc(100% - 64px)); margin:0 auto;">
-        <div style="margin-bottom:42px; padding-bottom:15px; border-bottom:1px solid rgba(71,73,75,0.42); display:flex; align-items:flex-end; justify-content:space-between; gap:24px;">
-          <h2 style="margin:0; font-family:'Noto Serif SC',serif; font-size:30px; font-weight:700; line-height:1.2;">翻译案例</h2>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#686a6b;">真实项目的表达前后对照</span>
-        </div>
-        <div style="display:grid; grid-template-columns:repeat(2,1fr); border:1px solid rgba(71,73,75,0.42);">
-
-          <article style="min-width:0; padding:28px 28px 30px; border-right:1px solid rgba(71,73,75,0.2);">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
-              <h3 style="margin:0; font-family:'Noto Serif SC',serif; font-size:21px;">Let’s Pod</h3>
-              <span style="font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:0.1em; color:#686a6b;">远程播客录音</span>
-            </div>
-            <div style="margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:12px;">
-              <div style="display:inline-flex; border:1px solid rgba(71,73,75,0.42);">
-                <button type="button" onclick="{{ lpShowSrc }}" style="{{ lpSrcBtn }}">原文</button>
-                <button type="button" onclick="{{ lpShowTgt }}" style="{{ lpTgtBtn }}">译文</button>
-              </div>
-              <span style="font-family:'Noto Serif SC',serif; font-size:11px; color:#686a6b;">{{ lpLabel }}</span>
-            </div>
-            <div style="margin-top:14px; padding:14px; background:rgba(255,255,255,0.5); border:1px solid rgba(71,73,75,0.42);">
-              <img src="assets/bundle/202fb41d-f471-4f08-97ed-8a2fe5749972.jpg" alt="Let's Pod 原文" style="{{ lpSrcStyle }}">
-              <img src="assets/bundle/a7700890-6771-4239-bb69-e0260aed206e.jpg" alt="Let's Pod 译文" style="{{ lpTgtStyle }}">
-            </div>
-            <p style="margin:18px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:13px; line-height:1.8;">从“功能很多的远程录音工具”，收束为“一场远程对谈，两条本地音轨”。</p>
-          </article>
-
-          <article style="min-width:0; padding:28px 28px 30px;">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
-              <h3 style="margin:0; font-family:'Noto Serif SC',serif; font-size:21px;">TransWeb</h3>
-              <span style="font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:0.1em; color:#686a6b;">AI 内容工作台</span>
-            </div>
-            <div style="margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:12px;">
-              <div style="display:inline-flex; border:1px solid rgba(71,73,75,0.42);">
-                <button type="button" onclick="{{ twShowSrc }}" style="{{ twSrcBtn }}">原文</button>
-                <button type="button" onclick="{{ twShowTgt }}" style="{{ twTgtBtn }}">译文</button>
-              </div>
-              <span style="font-family:'Noto Serif SC',serif; font-size:11px; color:#686a6b;">{{ twLabel }}</span>
-            </div>
-            <div style="margin-top:14px; padding:14px; background:rgba(255,255,255,0.5); border:1px solid rgba(71,73,75,0.42);">
-              <img src="assets/bundle/3cf21a27-8403-4e09-9acf-86a4ba9baea1.png" alt="TransWeb 原文" style="{{ twSrcStyle }}">
-              <img src="assets/bundle/213999f0-6e6d-411c-9067-2da56e157022.png" alt="TransWeb 译文" style="{{ twTgtStyle }}">
-            </div>
-            <p style="margin:18px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:13px; line-height:1.8;">把版本管理能力，翻译成用户能立刻感知的结果：“改到第 8 稿，也能回到最好的第 3 稿”。</p>
           </article>
 
         </div>
@@ -5683,15 +5579,7 @@
   &quot;showHeroPortrait&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; }
 }">
 class Component extends DCLogic {
-  state = { url: '', shots: [], copied: false, lpView: 'target', twView: 'target' };
-
-  tabBtn(active) {
-    const base = "padding:9px 22px; border:none; font-family:'Noto Serif SC',serif; font-size:13px; cursor:pointer; transition:background 160ms ease,color 160ms ease;";
-    return active ? base + ' background:#1a1a1a; color:#ececea;' : base + ' background:transparent; color:#47494b;';
-  }
-
-  setLp = (v) => this.setState({ lpView: v });
-  setTw = (v) => this.setState({ twView: v });
+  state = { url: '', shots: [], copied: false };
 
   setUrl = (e) => this.setState({ url: e.target.value });
 
@@ -5741,9 +5629,6 @@ class Component extends DCLogic {
   };
 
   renderVals() {
-    const lpSrc = this.state.lpView === 'source';
-    const twSrc = this.state.twView === 'source';
-    const caseStyle = (active) => 'display:' + (active ? 'block' : 'none') + '; width:100%; border:1px solid rgba(71,73,75,0.16);';
     const thumb = (s, i) => React.createElement(
       'div',
       { key: i, style: { position: 'relative', aspectRatio: '1', border: '1px solid rgba(71,73,75,0.42)', overflow: 'hidden' } },
@@ -5752,20 +5637,6 @@ class Component extends DCLogic {
     );
     return {
       showPortrait: this.props.showHeroPortrait ?? true,
-      lpSrcStyle: caseStyle(lpSrc),
-      lpTgtStyle: caseStyle(!lpSrc),
-      lpLabel: lpSrc ? '原文 · 开发者视角' : '译文 · 用户视角',
-      lpSrcBtn: this.tabBtn(lpSrc),
-      lpTgtBtn: this.tabBtn(!lpSrc),
-      lpShowSrc: () => this.setLp('source'),
-      lpShowTgt: () => this.setLp('target'),
-      twSrcStyle: caseStyle(twSrc),
-      twTgtStyle: caseStyle(!twSrc),
-      twLabel: twSrc ? '原文 · 开发者视角' : '译文 · 用户视角',
-      twSrcBtn: this.tabBtn(twSrc),
-      twTgtBtn: this.tabBtn(!twSrc),
-      twShowSrc: () => this.setTw('source'),
-      twShowTgt: () => this.setTw('target'),
       shotThumbs: this.state.shots.map((s, i) => thumb(s, i)),
       url: this.state.url,
       shots: this.state.shots.map((s, i) => ({ src: s.src, onRemove: () => this.removeShot(i) })),

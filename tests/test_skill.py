@@ -87,6 +87,26 @@ class YanfuSkillContract(unittest.TestCase):
         self.assertIn("不要重新设计", output_spec)
         self.assertIn("忠于原 Landing Page 的设计风格", output_spec)
 
+    def test_landing_page_excludes_translation_notes_and_screenshot_evidence(self):
+        text = read(SKILL_MD)
+        self.assertIn("默认不直接进入 `landing.html`", text)
+        self.assertIn("不是翻译说明、审查报告或证据展示页", text)
+        self.assertIn("不得显示内部翻译底稿、置信度、证据说明、截图说明、原站分析或咨询式分析", text)
+        self.assertNotIn("核心界面 → 用户结果 → 证明", text)
+
+        output_spec = read(SKILL_DIR / "references" / "output-spec.md")
+        self.assertIn("证据归因、截图说明或“为什么这样改”的说明文字", output_spec)
+        self.assertIn("不得写成审查报告、案例复盘、翻译说明或证据展示页", output_spec)
+        self.assertIn("避免“截图中可见”“界面证据”等说明", output_spec)
+
+        evidence = read(SKILL_DIR / "references" / "evidence-and-browsing.md")
+        self.assertIn("截图是证据输入，不是默认输出素材", evidence)
+        self.assertIn("不得以“截图中可见”“界面显示”“依据截图”等说明文字出现在 `landing.html`", evidence)
+
+        method = read(SKILL_DIR / "references" / "translation-method.md")
+        self.assertIn("证据链、删改理由、截图观察和置信度全部进入 `yanfu-notes.md`", method)
+        self.assertIn("“原站说明”“截图可见”“依据公开页面”等译注式文字", method)
+
     def test_skill_contains_no_placeholders(self):
         combined = "\n".join(
             read(path)

@@ -55,13 +55,27 @@ class LandingPageContract(unittest.TestCase):
 
     def test_required_sections_exist(self):
         for section_id in (
-            "comparison",
             "principles",
             "cases",
             "download",
             "family",
         ):
             self.assertIn(section_id, self.parser.ids)
+
+    def test_translation_cases_replace_ipod_method_section(self):
+        cases = self.html[self.html.index('id="cases"'):self.html.index('id="principles"')]
+        self.assertIn("翻译案例", self.html)
+        self.assertNotIn("原文 / 译文", self.html)
+        self.assertNotIn("MusicBox", self.html)
+        self.assertNotIn("1000 首歌", self.html)
+        self.assertNotIn("便携式数字音乐播放器", self.html)
+        self.assertNotIn("writing-mode:vertical-rl", self.html)
+        self.assertNotIn("<img", cases)
+        self.assertNotIn("<button", cases)
+        self.assertNotIn("原文", cases)
+        self.assertNotIn("译文", cases)
+        self.assertNotIn("{{", cases)
+        self.assertLess(self.html.index('id="cases"'), self.html.index('id="principles"'))
 
     def test_family_links_are_real_and_safe(self):
         expected = {
@@ -82,7 +96,7 @@ class LandingPageContract(unittest.TestCase):
                 self.assertIn("noopener", link.get("rel", ""))
 
     def test_images_have_alt_text_and_local_sources(self):
-        self.assertGreaterEqual(len(self.parser.images), 8)
+        self.assertGreaterEqual(len(self.parser.images), 3)
         for image in self.parser.images:
             self.assertIn("alt", image)
             self.assertFalse(image.get("src", "").startswith("data:"))

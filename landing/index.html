@@ -5530,6 +5530,9 @@
             <h3 style="margin:8px 0 0; font-family:'Noto Serif SC',serif; font-size:20px;">下载任务包，交给严复</h3>
             <textarea readonly="" value="{{ promptText }}" style="flex:1; margin-top:14px; min-height:208px; padding:16px; border:1px solid rgba(71,73,75,0.42); background:rgba(255,255,255,0.6); color:#47494b; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.75; resize:none; outline:none;"></textarea>
             <p style="margin:12px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:12px; line-height:1.7;">推荐下载 yanfu-task-pack.zip：它会把 prompt.md、meta.json 和 screenshots/ 打包在一起。若你的 agent 不支持 ZIP，再只复制提示词并手动附加截图。</p>
+            <sc-if value="{{ hasPackError }}" hint-placeholder-val="{{ false }}">
+            <p role="alert" style="margin:10px 0 0; padding:10px 12px; border:1px solid rgba(168,48,45,0.38); background:rgba(168,48,45,0.06); color:#a8302d; font-family:'Noto Serif SC',serif; font-size:12px; line-height:1.7;">{{ packError }}</p>
+            </sc-if>
             <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;">
               <button type="button" onclick="{{ downloadTaskPack }}" style="flex:1 1 250px; min-height:50px; border:1px solid #1a1a1a; background:#1a1a1a; color:#ececea; font-family:'Noto Serif SC',serif; font-size:15px; font-weight:600; letter-spacing:0.03em; cursor:pointer; transition:background 160ms ease;" style-hover="background:#000;">{{ packLabel }}</button>
               <button type="button" onclick="{{ copyPrompt }}" style="flex:1 1 160px; min-height:50px; border:1px solid rgba(71,73,75,0.42); background:rgba(255,255,255,0.42); color:#1a1a1a; font-family:'Noto Serif SC',serif; font-size:15px; font-weight:600; letter-spacing:0.03em; cursor:pointer; transition:background 160ms ease;" style-hover="background:rgba(255,255,255,0.76);">{{ copyLabel }}</button>
@@ -5584,7 +5587,7 @@
   &quot;showHeroPortrait&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; }
 }">
 class Component extends DCLogic {
-  state = { url: '', shots: [], copied: false, packed: false, lpView: 'target', twView: 'target' };
+  state = { url: '', shots: [], copied: false, packed: false, packError: '', lpView: 'target', twView: 'target' };
 
   tabBtn(active) {
     const base = "padding:9px 22px; border:none; font-family:'Noto Serif SC',serif; font-size:13px; cursor:pointer; transition:background 160ms ease,color 160ms ease;";
@@ -5594,12 +5597,12 @@ class Component extends DCLogic {
   setLp = (v) => this.setState({ lpView: v });
   setTw = (v) => this.setState({ twView: v });
 
-  setUrl = (e) => this.setState({ url: e.target.value });
+  setUrl = (e) => this.setState({ url: e.target.value, packError: '' });
 
   onPick = (e) => {
     const files = Array.from(e.target.files || []);
     const next = files.map((f) => ({ file: f, src: URL.createObjectURL(f), name: f.name || 'screenshot.png' }));
-    this.setState((s) => ({ shots: [...s.shots, ...next].slice(0, 5) }));
+    this.setState((s) => ({ shots: [...s.shots, ...next].slice(0, 5), packError: '' }));
     e.target.value = '';
   };
 
@@ -5740,6 +5743,14 @@ class Component extends DCLogic {
   }
 
   downloadTaskPack = async () => {
+    const missing = [];
+    if (!(this.state.url || '').trim()) missing.push('请先粘贴落地页链接');
+    if (!this.state.shots.length) missing.push('请上传 1–5 张核心产品截图');
+    if (missing.length) {
+      this.setState({ packError: missing.join('，') + '，再下载任务包。' });
+      return;
+    }
+
     const files = [
       { name: 'prompt.md', bytes: this.encodeText(this.buildPrompt()) },
       { name: 'meta.json', bytes: this.encodeText(JSON.stringify(this.buildMeta(), null, 2)) },
@@ -5767,7 +5778,7 @@ class Component extends DCLogic {
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 0);
-    this.setState({ packed: true });
+    this.setState({ packed: true, packError: '' });
     setTimeout(() => this.setState({ packed: false }), 1800);
   };
 
@@ -5816,6 +5827,8 @@ class Component extends DCLogic {
       shotCount: this.state.shots.length,
       hasShots: this.state.shots.length > 0,
       promptText: this.buildPrompt(),
+      hasPackError: Boolean(this.state.packError),
+      packError: this.state.packError,
       packLabel: this.state.packed ? '已生成 ZIP' : '下载严复任务包 ZIP',
       copyLabel: this.state.copied ? '已复制 ✓' : '只复制提示词',
       setUrl: this.setUrl,

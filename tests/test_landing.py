@@ -134,6 +134,13 @@ class LandingPageContract(unittest.TestCase):
         self.assertIn("application/zip", self.html)
         self.assertIn("URL.createObjectURL", self.html)
 
+    def test_download_pack_requires_url_and_screenshot(self):
+        self.assertIn("packError", self.html)
+        self.assertIn("hasPackError", self.html)
+        self.assertIn("请先粘贴落地页链接", self.html)
+        self.assertIn("请上传 1–5 张核心产品截图", self.html)
+        self.assertIn("再下载任务包", self.html)
+
     def test_single_h1(self):
         self.assertEqual(
             1,

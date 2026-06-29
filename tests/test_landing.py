@@ -70,11 +70,16 @@ class LandingPageContract(unittest.TestCase):
         self.assertNotIn("1000 首歌", self.html)
         self.assertNotIn("便携式数字音乐播放器", self.html)
         self.assertNotIn("writing-mode:vertical-rl", self.html)
-        self.assertNotIn("<img", cases)
-        self.assertNotIn("<button", cases)
-        self.assertNotIn("原文", cases)
-        self.assertNotIn("译文", cases)
-        self.assertNotIn("{{", cases)
+        self.assertEqual(4, cases.count("<img"))
+        self.assertEqual(2, cases.count(">原文</button>"))
+        self.assertEqual(2, cases.count(">译文</button>"))
+        for alt in (
+            "Let's Pod 原文",
+            "Let's Pod 译文",
+            "TransWeb 原文",
+            "TransWeb 译文",
+        ):
+            self.assertIn(alt, cases)
         self.assertLess(self.html.index('id="cases"'), self.html.index('id="principles"'))
 
     def test_family_links_are_real_and_safe(self):
@@ -96,7 +101,7 @@ class LandingPageContract(unittest.TestCase):
                 self.assertIn("noopener", link.get("rel", ""))
 
     def test_images_have_alt_text_and_local_sources(self):
-        self.assertGreaterEqual(len(self.parser.images), 3)
+        self.assertGreaterEqual(len(self.parser.images), 7)
         for image in self.parser.images:
             self.assertIn("alt", image)
             self.assertFalse(image.get("src", "").startswith("data:"))

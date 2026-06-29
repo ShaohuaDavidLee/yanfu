@@ -45,6 +45,8 @@
     #cases article { padding: 24px 20px 28px !important; border-right: 0 !important; border-bottom: 1px solid rgba(71,73,75,0.2) !important; }
     #cases article:last-child { border-bottom: 0 !important; }
     #cases article > div:first-child { align-items: flex-start !important; flex-direction: column !important; gap: 4px !important; }
+    #cases article > div:nth-child(3) { padding: 10px !important; }
+    #cases img { width: 100% !important; height: auto !important; }
 
     #download > div > div:nth-of-type(2),
     #download > div > div:nth-of-type(3) { grid-template-columns: 1fr !important; }
@@ -82,7 +84,8 @@
 
     #principles article { min-height: 250px !important; padding: 28px 22px !important; }
     #cases article { padding: 22px 16px 26px !important; }
-    #cases article div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+    #cases article > div:nth-child(2) { flex-direction: column !important; align-items: flex-start !important; }
+    #cases article > div:nth-child(2) > div:first-child { width: 100% !important; }
     #download > div > div:nth-of-type(2) > div,
     #download > div > div:nth-of-type(3) > div { padding: 24px 18px !important; }
     #download div[style*="grid-template-columns:repeat(5,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
@@ -5397,12 +5400,12 @@
       </div>
     </section>
 
-    <!-- CASES (text-only examples) -->
+    <!-- CASES (only Let's Pod + TransWeb, real screenshots) -->
     <section id="cases" data-screen-label="Cases" style="padding:88px 0; border-bottom:1px solid rgba(71,73,75,0.2);">
       <div style="width:min(1180px,calc(100% - 64px)); margin:0 auto;">
         <div style="margin-bottom:42px; padding-bottom:15px; border-bottom:1px solid rgba(71,73,75,0.42); display:flex; align-items:flex-end; justify-content:space-between; gap:24px;">
           <h2 style="margin:0; font-family:'Noto Serif SC',serif; font-size:30px; font-weight:700; line-height:1.2;">翻译案例</h2>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#686a6b;">真实项目的用户视角改写</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#686a6b;">真实项目的表达前后对照</span>
         </div>
         <div style="display:grid; grid-template-columns:repeat(2,1fr); border:1px solid rgba(71,73,75,0.42);">
 
@@ -5411,15 +5414,16 @@
               <h3 style="margin:0; font-family:'Noto Serif SC',serif; font-size:21px;">Let’s Pod</h3>
               <span style="font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:0.1em; color:#686a6b;">远程播客录音</span>
             </div>
-            <div style="margin-top:22px; display:grid; grid-template-columns:1fr 1fr; gap:14px;">
-              <div style="min-height:168px; padding:18px; background:rgba(255,255,255,0.38); border:1px solid rgba(71,73,75,0.24);">
-                <p style="margin:0; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:#686a6b;">Before</p>
-                <p style="margin:14px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:13px; line-height:1.85;">功能点很多：远程录音、视频、协作、导出同时出现，用户不容易先记住它解决什么。</p>
+            <div style="margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:12px;">
+              <div style="display:inline-flex; border:1px solid rgba(71,73,75,0.42);">
+                <button type="button" onclick="{{ lpShowSrc }}" style="{{ lpSrcBtn }}">原文</button>
+                <button type="button" onclick="{{ lpShowTgt }}" style="{{ lpTgtBtn }}">译文</button>
               </div>
-              <div style="min-height:168px; padding:18px; background:#1a1a1a; color:#ececea; border:1px solid #1a1a1a;">
-                <p style="margin:0; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(236,236,234,0.62);">After</p>
-                <p style="margin:14px 0 0; font-family:'Noto Serif SC',serif; font-size:15px; line-height:1.85;">一场远程对谈，两条本地音轨。主播不用解释技术栈，也能说清为什么录音更稳、更好剪。</p>
-              </div>
+              <span style="font-family:'Noto Serif SC',serif; font-size:11px; color:#686a6b;">{{ lpLabel }}</span>
+            </div>
+            <div style="margin-top:14px; padding:14px; background:rgba(255,255,255,0.5); border:1px solid rgba(71,73,75,0.42);">
+              <img src="assets/bundle/202fb41d-f471-4f08-97ed-8a2fe5749972.jpg" alt="Let's Pod 原文" style="{{ lpSrcStyle }}">
+              <img src="assets/bundle/a7700890-6771-4239-bb69-e0260aed206e.jpg" alt="Let's Pod 译文" style="{{ lpTgtStyle }}">
             </div>
             <p style="margin:18px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:13px; line-height:1.8;">从“功能很多的远程录音工具”，收束为“一场远程对谈，两条本地音轨”。</p>
           </article>
@@ -5429,15 +5433,16 @@
               <h3 style="margin:0; font-family:'Noto Serif SC',serif; font-size:21px;">TransWeb</h3>
               <span style="font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:0.1em; color:#686a6b;">AI 内容工作台</span>
             </div>
-            <div style="margin-top:22px; display:grid; grid-template-columns:1fr 1fr; gap:14px;">
-              <div style="min-height:168px; padding:18px; background:rgba(255,255,255,0.38); border:1px solid rgba(71,73,75,0.24);">
-                <p style="margin:0; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:#686a6b;">Before</p>
-                <p style="margin:14px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:13px; line-height:1.85;">项目、资产、版本和 AI 处理能力混在一起，像后台功能说明，不像用户能马上复述的价值。</p>
+            <div style="margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:12px;">
+              <div style="display:inline-flex; border:1px solid rgba(71,73,75,0.42);">
+                <button type="button" onclick="{{ twShowSrc }}" style="{{ twSrcBtn }}">原文</button>
+                <button type="button" onclick="{{ twShowTgt }}" style="{{ twTgtBtn }}">译文</button>
               </div>
-              <div style="min-height:168px; padding:18px; background:#1a1a1a; color:#ececea; border:1px solid #1a1a1a;">
-                <p style="margin:0; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(236,236,234,0.62);">After</p>
-                <p style="margin:14px 0 0; font-family:'Noto Serif SC',serif; font-size:15px; line-height:1.85;">改到第 8 稿，也能回到最好的第 3 稿。创作者知道它解决的是返工和版本失控。</p>
-              </div>
+              <span style="font-family:'Noto Serif SC',serif; font-size:11px; color:#686a6b;">{{ twLabel }}</span>
+            </div>
+            <div style="margin-top:14px; padding:14px; background:rgba(255,255,255,0.5); border:1px solid rgba(71,73,75,0.42);">
+              <img src="assets/bundle/3cf21a27-8403-4e09-9acf-86a4ba9baea1.png" alt="TransWeb 原文" style="{{ twSrcStyle }}">
+              <img src="assets/bundle/213999f0-6e6d-411c-9067-2da56e157022.png" alt="TransWeb 译文" style="{{ twTgtStyle }}">
             </div>
             <p style="margin:18px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:13px; line-height:1.8;">把版本管理能力，翻译成用户能立刻感知的结果：“改到第 8 稿，也能回到最好的第 3 稿”。</p>
           </article>
@@ -5579,7 +5584,15 @@
   &quot;showHeroPortrait&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; }
 }">
 class Component extends DCLogic {
-  state = { url: '', shots: [], copied: false };
+  state = { url: '', shots: [], copied: false, lpView: 'target', twView: 'target' };
+
+  tabBtn(active) {
+    const base = "padding:9px 22px; border:none; font-family:'Noto Serif SC',serif; font-size:13px; cursor:pointer; transition:background 160ms ease,color 160ms ease;";
+    return active ? base + ' background:#1a1a1a; color:#ececea;' : base + ' background:transparent; color:#47494b;';
+  }
+
+  setLp = (v) => this.setState({ lpView: v });
+  setTw = (v) => this.setState({ twView: v });
 
   setUrl = (e) => this.setState({ url: e.target.value });
 
@@ -5629,6 +5642,9 @@ class Component extends DCLogic {
   };
 
   renderVals() {
+    const lpSrc = this.state.lpView === 'source';
+    const twSrc = this.state.twView === 'source';
+    const caseStyle = (active) => 'display:' + (active ? 'block' : 'none') + '; width:100%; border:1px solid rgba(71,73,75,0.16);';
     const thumb = (s, i) => React.createElement(
       'div',
       { key: i, style: { position: 'relative', aspectRatio: '1', border: '1px solid rgba(71,73,75,0.42)', overflow: 'hidden' } },
@@ -5637,6 +5653,20 @@ class Component extends DCLogic {
     );
     return {
       showPortrait: this.props.showHeroPortrait ?? true,
+      lpSrcStyle: caseStyle(lpSrc),
+      lpTgtStyle: caseStyle(!lpSrc),
+      lpLabel: lpSrc ? '原文 · 开发者视角' : '译文 · 用户视角',
+      lpSrcBtn: this.tabBtn(lpSrc),
+      lpTgtBtn: this.tabBtn(!lpSrc),
+      lpShowSrc: () => this.setLp('source'),
+      lpShowTgt: () => this.setLp('target'),
+      twSrcStyle: caseStyle(twSrc),
+      twTgtStyle: caseStyle(!twSrc),
+      twLabel: twSrc ? '原文 · 开发者视角' : '译文 · 用户视角',
+      twSrcBtn: this.tabBtn(twSrc),
+      twTgtBtn: this.tabBtn(!twSrc),
+      twShowSrc: () => this.setTw('source'),
+      twShowTgt: () => this.setTw('target'),
       shotThumbs: this.state.shots.map((s, i) => thumb(s, i)),
       url: this.state.url,
       shots: this.state.shots.map((s, i) => ({ src: s.src, onRemove: () => this.removeShot(i) })),

@@ -45,8 +45,6 @@
     #cases article { padding: 24px 20px 28px !important; border-right: 0 !important; border-bottom: 1px solid rgba(71,73,75,0.2) !important; }
     #cases article:last-child { border-bottom: 0 !important; }
     #cases article > div:first-child { align-items: flex-start !important; flex-direction: column !important; gap: 4px !important; }
-    #cases article > div:nth-child(3) { padding: 10px !important; }
-    #cases img { width: 100% !important; height: auto !important; }
 
     #download > div > div:nth-of-type(2),
     #download > div > div:nth-of-type(3) { grid-template-columns: 1fr !important; }
@@ -84,8 +82,7 @@
 
     #principles article { min-height: 250px !important; padding: 28px 22px !important; }
     #cases article { padding: 22px 16px 26px !important; }
-    #cases article > div:nth-child(2) { flex-direction: column !important; align-items: flex-start !important; }
-    #cases article > div:nth-child(2) > div:first-child { width: 100% !important; }
+    #cases article div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
     #download > div > div:nth-of-type(2) > div,
     #download > div > div:nth-of-type(3) > div { padding: 24px 18px !important; }
     #download div[style*="grid-template-columns:repeat(5,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
@@ -5530,10 +5527,13 @@
           <!-- PROMPT -->
           <div style="display:flex; flex-direction:column; padding:34px;">
             <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#a8302d;">STEP 03</span>
-            <h3 style="margin:8px 0 0; font-family:'Noto Serif SC',serif; font-size:20px;">复制提示词，交给严复</h3>
+            <h3 style="margin:8px 0 0; font-family:'Noto Serif SC',serif; font-size:20px;">下载任务包，交给严复</h3>
             <textarea readonly="" value="{{ promptText }}" style="flex:1; margin-top:14px; min-height:208px; padding:16px; border:1px solid rgba(71,73,75,0.42); background:rgba(255,255,255,0.6); color:#47494b; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.75; resize:none; outline:none;"></textarea>
-            <p style="margin:12px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:12px; line-height:1.7;">复制文本后，手动把截图作为附件一起发给你的 agent；严复会忠于原 Landing Page 的设计风格，不要重新设计。</p>
-            <button type="button" onclick="{{ copyPrompt }}" style="margin-top:14px; min-height:50px; border:1px solid #1a1a1a; background:#1a1a1a; color:#ececea; font-family:'Noto Serif SC',serif; font-size:15px; font-weight:600; letter-spacing:0.03em; cursor:pointer; transition:background 160ms ease;" style-hover="background:#000;">{{ copyLabel }}</button>
+            <p style="margin:12px 0 0; color:#686a6b; font-family:'Noto Serif SC',serif; font-size:12px; line-height:1.7;">推荐下载 yanfu-task-pack.zip：它会把 prompt.md、meta.json 和 screenshots/ 打包在一起。若你的 agent 不支持 ZIP，再只复制提示词并手动附加截图。</p>
+            <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;">
+              <button type="button" onclick="{{ downloadTaskPack }}" style="flex:1 1 250px; min-height:50px; border:1px solid #1a1a1a; background:#1a1a1a; color:#ececea; font-family:'Noto Serif SC',serif; font-size:15px; font-weight:600; letter-spacing:0.03em; cursor:pointer; transition:background 160ms ease;" style-hover="background:#000;">{{ packLabel }}</button>
+              <button type="button" onclick="{{ copyPrompt }}" style="flex:1 1 160px; min-height:50px; border:1px solid rgba(71,73,75,0.42); background:rgba(255,255,255,0.42); color:#1a1a1a; font-family:'Noto Serif SC',serif; font-size:15px; font-weight:600; letter-spacing:0.03em; cursor:pointer; transition:background 160ms ease;" style-hover="background:rgba(255,255,255,0.76);">{{ copyLabel }}</button>
+            </div>
           </div>
         </div>
 
@@ -5584,7 +5584,7 @@
   &quot;showHeroPortrait&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; }
 }">
 class Component extends DCLogic {
-  state = { url: '', shots: [], copied: false, lpView: 'target', twView: 'target' };
+  state = { url: '', shots: [], copied: false, packed: false, lpView: 'target', twView: 'target' };
 
   tabBtn(active) {
     const base = "padding:9px 22px; border:none; font-family:'Noto Serif SC',serif; font-size:13px; cursor:pointer; transition:background 160ms ease,color 160ms ease;";
@@ -5598,7 +5598,7 @@ class Component extends DCLogic {
 
   onPick = (e) => {
     const files = Array.from(e.target.files || []);
-    const next = files.map((f) => ({ src: URL.createObjectURL(f) }));
+    const next = files.map((f) => ({ file: f, src: URL.createObjectURL(f), name: f.name || 'screenshot.png' }));
     this.setState((s) => ({ shots: [...s.shots, ...next].slice(0, 5) }));
     e.target.value = '';
   };
@@ -5627,6 +5627,149 @@ class Component extends DCLogic {
       '请输出 landing.html 与 yanfu-notes.md。yanfu-notes.md 中请包含：信、达、电梯演讲、雅、待确认。',
     ].join('\n');
   }
+
+  buildMeta() {
+    return {
+      generatedAt: new Date().toISOString(),
+      landingPageUrl: (this.state.url || '').trim(),
+      screenshotCount: this.state.shots.length,
+      skillUrl: 'https://github.com/ShaohuaDavidLee/yanfu',
+      output: ['landing.html', 'yanfu-notes.md'],
+      boundaries: [
+        'Do not reposition the product.',
+        'Do not invent claims, metrics, customers, or promises.',
+        'Preserve the original landing page design style unless a restrained adjustment is necessary.',
+      ],
+    };
+  }
+
+  encodeText(text) {
+    return new TextEncoder().encode(text);
+  }
+
+  crc32(bytes) {
+    let crc = -1;
+    for (let i = 0; i < bytes.length; i += 1) {
+      crc ^= bytes[i];
+      for (let j = 0; j < 8; j += 1) {
+        crc = (crc >>> 1) ^ (0xedb88320 & -(crc & 1));
+      }
+    }
+    return (crc ^ -1) >>> 0;
+  }
+
+  dosDateTime(date = new Date()) {
+    const year = Math.max(date.getFullYear(), 1980);
+    return {
+      time: (date.getHours() << 11) | (date.getMinutes() << 5) | Math.floor(date.getSeconds() / 2),
+      date: ((year - 1980) << 9) | ((date.getMonth() + 1) << 5) | date.getDate(),
+    };
+  }
+
+  sanitizeFileName(name) {
+    return String(name || 'screenshot.png').replace(/[\\/:*?"<>|]+/g, '-').replace(/\s+/g, '-').slice(0, 80) || 'screenshot.png';
+  }
+
+  concatBytes(parts) {
+    const total = parts.reduce((sum, part) => sum + part.length, 0);
+    const out = new Uint8Array(total);
+    let offset = 0;
+    parts.forEach((part) => {
+      out.set(part, offset);
+      offset += part.length;
+    });
+    return out;
+  }
+
+  createZip(files) {
+    const localParts = [];
+    const centralParts = [];
+    let offset = 0;
+    const stamp = this.dosDateTime();
+
+    files.forEach((file) => {
+      const nameBytes = this.encodeText(file.name);
+      const bytes = file.bytes instanceof Uint8Array ? file.bytes : new Uint8Array(file.bytes);
+      const crc = this.crc32(bytes);
+
+      const local = new Uint8Array(30 + nameBytes.length);
+      const localView = new DataView(local.buffer);
+      localView.setUint32(0, 0x04034b50, true);
+      localView.setUint16(4, 20, true);
+      localView.setUint16(6, 0x0800, true);
+      localView.setUint16(8, 0, true);
+      localView.setUint16(10, stamp.time, true);
+      localView.setUint16(12, stamp.date, true);
+      localView.setUint32(14, crc, true);
+      localView.setUint32(18, bytes.length, true);
+      localView.setUint32(22, bytes.length, true);
+      localView.setUint16(26, nameBytes.length, true);
+      local.set(nameBytes, 30);
+      localParts.push(local, bytes);
+
+      const central = new Uint8Array(46 + nameBytes.length);
+      const centralView = new DataView(central.buffer);
+      centralView.setUint32(0, 0x02014b50, true);
+      centralView.setUint16(4, 20, true);
+      centralView.setUint16(6, 20, true);
+      centralView.setUint16(8, 0x0800, true);
+      centralView.setUint16(10, 0, true);
+      centralView.setUint16(12, stamp.time, true);
+      centralView.setUint16(14, stamp.date, true);
+      centralView.setUint32(16, crc, true);
+      centralView.setUint32(20, bytes.length, true);
+      centralView.setUint32(24, bytes.length, true);
+      centralView.setUint16(28, nameBytes.length, true);
+      centralView.setUint32(42, offset, true);
+      central.set(nameBytes, 46);
+      centralParts.push(central);
+
+      offset += local.length + bytes.length;
+    });
+
+    const centralDirectory = this.concatBytes(centralParts);
+    const end = new Uint8Array(22);
+    const endView = new DataView(end.buffer);
+    endView.setUint32(0, 0x06054b50, true);
+    endView.setUint16(8, files.length, true);
+    endView.setUint16(10, files.length, true);
+    endView.setUint32(12, centralDirectory.length, true);
+    endView.setUint32(16, offset, true);
+
+    return this.concatBytes([...localParts, centralDirectory, end]);
+  }
+
+  downloadTaskPack = async () => {
+    const files = [
+      { name: 'prompt.md', bytes: this.encodeText(this.buildPrompt()) },
+      { name: 'meta.json', bytes: this.encodeText(JSON.stringify(this.buildMeta(), null, 2)) },
+      { name: 'screenshots/', bytes: new Uint8Array(0) },
+    ];
+
+    for (let i = 0; i < this.state.shots.length; i += 1) {
+      const shot = this.state.shots[i];
+      if (shot.file && shot.file.arrayBuffer) {
+        const index = String(i + 1).padStart(2, '0');
+        files.push({
+          name: `screenshots/${index}-${this.sanitizeFileName(shot.name)}`,
+          bytes: new Uint8Array(await shot.file.arrayBuffer()),
+        });
+      }
+    }
+
+    const zipBytes = this.createZip(files);
+    const blob = new Blob([zipBytes], { type: 'application/zip' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'yanfu-task-pack.zip';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 0);
+    this.setState({ packed: true });
+    setTimeout(() => this.setState({ packed: false }), 1800);
+  };
 
   copyPrompt = () => {
     const text = this.buildPrompt();
@@ -5673,9 +5816,11 @@ class Component extends DCLogic {
       shotCount: this.state.shots.length,
       hasShots: this.state.shots.length > 0,
       promptText: this.buildPrompt(),
-      copyLabel: this.state.copied ? '已复制 ✓' : '复制提示词',
+      packLabel: this.state.packed ? '已生成 ZIP' : '下载严复任务包 ZIP',
+      copyLabel: this.state.copied ? '已复制 ✓' : '只复制提示词',
       setUrl: this.setUrl,
       onPick: this.onPick,
+      downloadTaskPack: this.downloadTaskPack,
       copyPrompt: this.copyPrompt,
     };
   }

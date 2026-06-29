@@ -1,6 +1,4 @@
 # 严复 Skill：你的产品故事翻译官
-<img width="1638" height="687" alt="image" src="https://github.com/user-attachments/assets/a14785cf-7ef6-4749-9e95-c6c181cfe9a5" />
-
 
 把你的“开发者视角”落地页，翻译成用户 5 秒能懂的落地页。
 
@@ -40,7 +38,7 @@
 - Logo、字体、品牌素材。
 - 不能删除或不能改写的内容。
 
-注意：如果你在严复官网上传截图，复制提示词时图片不会自动进入剪贴板文本。你需要在自己的 agent 对话里手动把截图作为附件一起发过去。
+注意：严复官网默认下载 `yanfu-task-pack.zip`，里面包含 `prompt.md`、`meta.json` 和 `screenshots/`。如果你的 agent 不支持读取 ZIP，再使用“只复制提示词”，并在自己的 agent 对话里手动把截图作为附件一起发过去。
 
 ## 输出
 
@@ -72,6 +70,20 @@
 结构清楚，表达克制。严复可以重排故事、压缩文案、调整信息层级和移动端可读性，但不要重新设计。默认忠于原 Landing Page 的设计风格：品牌气质、主色、字体气质、组件语言、视觉密度和真实 CTA 都应保留。
 
 ## 给用户的使用提示词
+
+官网推荐流程：
+
+1. 粘贴你的 Landing Page URL。
+2. 上传 1-5 张核心产品界面截图。
+3. 下载 `yanfu-task-pack.zip`，交给你的 agent。
+
+任务包会包含：
+
+- `prompt.md`：严复执行提示词。
+- `meta.json`：链接、截图数量、输出文件和边界条件。
+- `screenshots/`：你上传的产品截图。
+
+如果不能上传 ZIP，可以只复制下面的提示词，再手动附加截图。
 
 ```text
 你是严复，产品故事翻译官。请把下面这个“开发者视角”的落地页，翻译成用户 5 秒能懂的落地页。
@@ -108,3 +120,30 @@
 - `landing/index.html`：严复官网首页，可作为静态站点部署。
 - `landing/assets/bundle/`：官网页面的图片、字体与运行时资源。
 - `tests/`：Skill 与官网页面的契约测试。
+
+## 本地预览官网
+
+```bash
+cd landing
+python3 -m http.server 4173
+```
+
+然后打开 `http://127.0.0.1:4173/`。
+
+## Cloudflare Pages 部署
+
+推荐用 Cloudflare Pages 部署静态站点：
+
+- Framework preset: `None`
+- Build command: 留空
+- Build output directory: `landing`
+- Root directory: 仓库根目录
+
+自定义域名可以放到草诀歌官方入口矩阵里，例如与 `simaqian.caojuege.com`、`b.caojuege.com` 同级。
+
+## 验证
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 /Users/aroma/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/yanfu
+```

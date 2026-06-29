@@ -1,0 +1,76 @@
+[
+  {
+    "at": 0,
+    "type": "status",
+    "label": "读取材料",
+    "text": "读取 Let’s Pod 原始页面、产品主界面截图和上一次严复生成产物。"
+  },
+  {
+    "at": 700,
+    "type": "status",
+    "label": "抽取事实",
+    "text": "确认可写事实：远程播客、本地独立音轨、主持人与嘉宾分别录制、录完后交给后期。"
+  },
+  {
+    "at": 1300,
+    "type": "patch",
+    "target": "hero",
+    "label": "Hero",
+    "text": "把产品功能压缩成用户能立即复述的一句话。",
+    "animation": {
+      "text": "typewriter",
+      "lines": "draw",
+      "textMs": 16,
+      "lineMs": 95
+    },
+    "html": "<section class=\"lp-hero\"><div><p class=\"lp-kicker\"><span class=\"lp-dot\"></span>Remote podcast recording</p><h2>一场远程对谈，两条本地音轨</h2><p>Let’s Pod 为远程播客录制保存主持人与嘉宾各自的本地音轨，让后期拿到更干净、更可靠的原始声音。</p><div class=\"lp-actions\"><a class=\"lp-button\">开始录制</a><a class=\"lp-button secondary\">查看录制方式</a></div></div><div class=\"lp-recorder\"><div class=\"lp-recorder-top\"><span>Let’s Pod Room</span><span>Local tracks ready</span></div><div class=\"lp-timer\">00:18:42</div><div class=\"lp-record\"></div><div class=\"lp-track-list\"><div class=\"lp-track\"><span>主持人</span><div class=\"lp-wave\"></div><span>Local</span></div><div class=\"lp-track\"><span>嘉宾</span><div class=\"lp-wave cyan\"></div><span>Local</span></div></div></div></section>"
+  },
+  {
+    "at": 5900,
+    "type": "patch",
+    "target": "problem",
+    "label": "问题",
+    "text": "先讲远程播客录制的真实风险，而不是先讲按钮和技术。",
+    "animation": {
+      "text": "typewriter",
+      "lines": "draw",
+      "textMs": 16,
+      "lineMs": 110
+    },
+    "html": "<section class=\"lp-section\"><h3>远程访谈最怕的不是连不上，而是录下来以后才发现声音坏了。</h3><p>通话软件会压缩、降噪、混音，也会把网络波动写进同一条音频。对谈当下听起来还能继续，交给后期时却只剩一条难以修复的混合轨。</p></section>"
+  },
+  {
+    "at": 9100,
+    "type": "patch",
+    "target": "mechanism",
+    "label": "机制",
+    "text": "把实现方式翻译成用户动作：各自录、状态同步、后期拿独立音轨。",
+    "animation": {
+      "text": "typewriter",
+      "lines": "draw",
+      "textMs": 13,
+      "lineMs": 95
+    },
+    "html": "<section class=\"lp-section dark\"><h3>让声音留在本地，让协作留在房间里。</h3><p>Let’s Pod 不把最终声音质量完全交给通话链路。录制时，双方在各自设备保存本地音轨，同时用房间状态同步开始、暂停与结束。</p><div class=\"lp-grid dark\"><article><b>本地录制</b><span>主持人与嘉宾各自在本机保存声音，减少网络压缩对原始音质的影响。</span></article><article><b>远程同步</b><span>录制房间同步成员状态，让远程协作像在同一个录音棚里开始。</span></article><article><b>后期友好</b><span>结束后获得可单独处理的人声音轨，方便剪辑、降噪、混音和交付。</span></article></div></section>"
+  },
+  {
+    "at": 13200,
+    "type": "patch",
+    "target": "cta",
+    "label": "CTA",
+    "text": "把行动号召落到第一次远程录制，而不是泛泛地介绍工具。",
+    "animation": {
+      "text": "typewriter",
+      "lines": "draw",
+      "textMs": 16,
+      "lineMs": 105
+    },
+    "html": "<section class=\"lp-section lp-cta\"><h3>下一期远程对谈，先把原始声音留住。</h3><p>创建录音房间，邀请嘉宾加入，录完拿到更适合后期处理的本地音轨。</p><a class=\"lp-button\">创建录音房间</a></section>"
+  },
+  {
+    "at": 15700,
+    "type": "complete",
+    "label": "完成",
+    "text": "landing.html 生成完成：一句话 Pitch、用户问题、产品机制和 CTA 已写入页面。"
+  }
+]

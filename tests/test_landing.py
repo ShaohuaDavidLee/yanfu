@@ -55,7 +55,7 @@ class LandingPageContract(unittest.TestCase):
         self.assertIn("你的产品故事翻译官", self.html)
         self.assertIn("开发者视角", self.html)
         self.assertIn("用户 5 秒能懂", self.html)
-        self.assertIn("不改产品定位", self.html)
+        self.assertIn("不重定位", self.html)
         self.assertIn("中文市场", self.html)
         self.assertIn("英文市场 Beta", self.html)
 

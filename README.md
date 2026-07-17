@@ -1,12 +1,14 @@
 # 严复 Skill：你的产品故事翻译官
 
-把你的“开发者视角”落地页，翻译成用户 5 秒能懂的落地页。
+把你的中文或英文“开发者视角”落地页，转译成面向中文市场或英文市场 Beta、让用户 5 秒能懂的落地页。
 
 严复不负责重新定位产品，也不替你发明价值主张。它只做一件事：忠于你已经做出来的产品和现有页面，把功能、机制、截图和 CTA 重新组织成用户能听懂、记住、复述的故事。
 
 ## 一句话
 
-严复把开发者写给自己的 Landing Page，翻译成用户一眼知道“这是什么、为谁做、能帮我得到什么”的 Landing Page。
+严复把开发者写给自己的 Landing Page，转译成目标市场用户一眼知道“这是什么、为谁做、能帮我得到什么”的 Landing Page。
+
+公开界面提供两个选择：`中文市场` 与 `英文市场 Beta`。内部支持中→中、英→中、中→英、英→英四条路径；“英文市场 Beta”指面向英语读者的转译能力，不代表覆盖所有海外国家、地区或语言。
 
 ## 适合谁
 
@@ -14,6 +16,8 @@
 - 页面能说明产品功能，但用户看完不知道为什么重要。
 - 不想先改定位、改产品、重做品牌，只想先把故事讲清楚。
 - 想把 Go To Market 的第一步收缩成一个能被测试的落地页。
+- 已有中文页面，想在不增加承诺的前提下验证英文市场表达。
+- 已有英文页面，但希望它更像写给目标用户，而不是写给开发者自己。
 
 ## 不适合什么
 
@@ -30,6 +34,7 @@
 
 1. 一个公开可访问的 Landing Page URL。
 2. 1-5 张核心产品界面截图。
+3. 目标市场：`中文市场` 或 `英文市场 Beta`。
 
 可选提供：
 
@@ -37,8 +42,9 @@
 - 真实 CTA 和链接。
 - Logo、字体、品牌素材。
 - 不能删除或不能改写的内容。
+- 目标用户（建议填写；原页面证据不足时严复才会追问）。
 
-注意：严复官网默认下载 `yanfu-task-pack.zip`，里面包含 `prompt.md`、`meta.json` 和 `screenshots/`。如果你的 agent 不支持读取 ZIP，再使用“只复制提示词”，并在自己的 agent 对话里手动把截图作为附件一起发过去。
+注意：严复官网默认下载 `yanfu-task-pack.zip`，里面包含 `prompt.md`、`meta.json` 和 `screenshots/`。`meta.json` 使用 `sourceLanguage: auto`，并记录 `targetMarket`、`targetLanguage` 与 `targetAudience`。如果你的 agent 不支持读取 ZIP，再使用“只复制提示词”，并在自己的 agent 对话里手动把截图作为附件一起发过去。
 
 ## 输出
 
@@ -54,6 +60,8 @@
 - `电梯演讲`：一个 30 秒版本，帮助你向朋友、用户或投资人快速说明产品。
 - `雅`：保留了哪些原设计元素，只做了哪些克制调整。
 - `待确认`：哪些承诺或事实证据不足，暂时不能写进页面。
+
+选择英文市场 Beta 时，`达` 内会增加三级小节 `跨市场转译`，分别说明语言转换和市场惯例转换；五个一级章节保持不变。
 
 ## 严复三原则
 
@@ -73,9 +81,10 @@
 
 官网推荐流程：
 
-1. 粘贴你的 Landing Page URL。
-2. 上传 1-5 张核心产品界面截图。
-3. 下载 `yanfu-task-pack.zip`，交给你的 agent。
+1. 选择 `中文市场` 或 `英文市场 Beta`。
+2. 粘贴你的 Landing Page URL。
+3. 上传 1-5 张核心产品界面截图，并可填写目标用户。
+4. 下载 `yanfu-task-pack.zip`，交给你的 agent。
 
 任务包会包含：
 
@@ -92,6 +101,8 @@
 
 原文链接：（粘贴你的 Landing Page URL）
 产品截图：（手动附加 1-5 张核心产品界面截图；截图无法进入剪贴板文本）
+目标市场：（中文市场 / 英文市场 Beta）
+目标用户：（建议填写；留空时请先从原页面提取，证据不足再追问）
 
 硬性边界：不要重新设计。请忠于原 Landing Page 的设计风格，保留原品牌气质、主色、字体气质、组件语言和视觉密度；暂不把产品截图当作视觉设计来源，截图只用于理解产品事实与界面证据。
 
@@ -100,7 +111,9 @@
 二、达——让陌生用户 5 秒内明白产品是什么、为谁服务、解决什么；
 三、雅——结构清楚、表达克制，并能一句话传播。
 
-请输出 landing.html 与 yanfu-notes.md。yanfu-notes.md 中请包含：信、达、电梯演讲、雅、待确认。
+请自动识别原页面是中文还是英文，并根据目标市场输出中文或英文页面。跨市场惯例转换不得引入新事实。
+
+请输出 landing.html 与 yanfu-notes.md。yanfu-notes.md 中请包含：信、达、电梯演讲、雅、待确认；选择英文市场 Beta 时，在“达”内加入三级小节“跨市场转译”。
 ```
 
 ## 给 agent 的执行约束
@@ -108,9 +121,11 @@
 当你作为 agent 使用本仓库时：
 
 - 先读取 `skills/yanfu/SKILL.md`。
-- 再按需读取 `skills/yanfu/references/evidence-and-browsing.md`、`translation-method.md`、`output-spec.md`。
+- 再按需读取 `skills/yanfu/references/evidence-and-browsing.md`、`translation-method.md`、`cross-market-adaptation.md`、`output-spec.md`。
 - 不得自行注册或登录产品。
 - 不得重新定位产品、修改目标用户、发明承诺或进行竞品分析。
+- 自动检测原页面语言，由目标市场决定输出语言；支持中→中、英→中、中→英、英→英。
+- 跨市场转译只能调整语言和表达惯例，不得补写数字、证明、客户或产品能力。
 - 不要重新设计；忠于原 Landing Page 的设计风格。
 - 生成后运行 `skills/yanfu/scripts/validate_delivery.py` 校验交付目录。
 
@@ -129,6 +144,15 @@ python3 -m http.server 4173
 ```
 
 然后打开 `http://127.0.0.1:4173/`。
+
+## 发布日观测
+
+公众号与视频号使用不同的 UTM 链接，例如：
+
+- 公众号：`https://yanfu.caojuege.com/?utm_source=wechat_official&utm_medium=article&utm_campaign=yanfu_launch`
+- 视频号：`https://yanfu.caojuege.com/?utm_source=wechat_channels&utm_medium=video&utm_campaign=yanfu_launch`
+
+页面会把 `yanfu:market-select` 与 `yanfu:task-pack-download` 同时发送为 DOM 自定义事件和 `window.dataLayer` 事件；下载任务包时，`meta.json` 也会保存 UTM 归因。部署环境仍需接入实际分析服务，才能汇总跨用户的下载量与英文市场选择占比。
 
 ## Cloudflare Pages 部署
 

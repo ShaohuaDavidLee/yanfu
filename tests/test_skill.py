@@ -10,6 +10,7 @@ SKILL_DIR = ROOT / "skills" / "yanfu"
 SKILL_MD = SKILL_DIR / "SKILL.md"
 AGENT_YAML = SKILL_DIR / "agents" / "openai.yaml"
 VALIDATOR = SKILL_DIR / "scripts" / "validate_delivery.py"
+CROSS_MARKET = SKILL_DIR / "references" / "cross-market-adaptation.md"
 
 
 def read(path):
@@ -31,11 +32,20 @@ class YanfuSkillContract(unittest.TestCase):
         self.assertTrue(description.startswith("用于"))
         self.assertIn("Landing Page", description)
         self.assertIn("产品截图", description)
+        self.assertIn("英文市场 Beta", description)
+        self.assertIn("帮我出海", description)
+        self.assertIn("translate or localize my landing page", description)
 
         interface = read(AGENT_YAML)
         self.assertIn('display_name: "严复 Skill"', interface)
         self.assertIn("$yanfu", interface)
         self.assertIn("用 $yanfu", interface)
+        self.assertIn('icon_small: "./assets/yanfu-icon.png"', interface)
+        self.assertIn('icon_large: "./assets/yanfu-portrait.png"', interface)
+        for name in ("yanfu-icon.png", "yanfu-portrait.png"):
+            asset = SKILL_DIR / "assets" / name
+            self.assertTrue(asset.is_file(), f"missing skill brand asset: {name}")
+            self.assertGreater(asset.stat().st_size, 1_000, f"empty skill brand asset: {name}")
 
     def test_input_contract_and_incomplete_input_behavior(self):
         text = read(SKILL_MD)
@@ -44,6 +54,35 @@ class YanfuSkillContract(unittest.TestCase):
         self.assertIn("只有 URL", text)
         self.assertIn("只有截图", text)
         self.assertIn("不得自行注册或登录", text)
+        self.assertIn("中文市场", text)
+        self.assertIn("英文市场 Beta", text)
+        self.assertIn("建议填写，不因缺省而直接停止", text)
+        self.assertIn("证据不足时再追问", text)
+
+    def test_dual_market_language_contract(self):
+        text = read(SKILL_MD)
+        for field in (
+            "`sourceLanguage`",
+            "`targetMarket`",
+            "`targetLanguage`",
+            "`targetAudience`",
+        ):
+            self.assertIn(field, text)
+
+        for value in (
+            "`auto`",
+            "`china`",
+            "`international-en`",
+            "`zh-CN`",
+            "`en`",
+        ):
+            self.assertIn(value, text)
+
+        for route in ("中→中", "英→中", "中→英", "英→英"):
+            self.assertIn(route, text)
+
+        self.assertIn("目标语言必须由 `targetMarket` 决定", text)
+        self.assertIn("不得借此修改目标用户", text)
 
     def test_scope_boundaries_are_explicit(self):
         text = read(SKILL_MD)
@@ -79,6 +118,7 @@ class YanfuSkillContract(unittest.TestCase):
         self.assertIn("yanfu-notes.md", text)
         self.assertIn("references/evidence-and-browsing.md", text)
         self.assertIn("references/translation-method.md", text)
+        self.assertIn("references/cross-market-adaptation.md", text)
         self.assertIn("references/output-spec.md", text)
 
         output_spec = read(SKILL_DIR / "references" / "output-spec.md")
@@ -86,6 +126,29 @@ class YanfuSkillContract(unittest.TestCase):
             self.assertIn(heading, output_spec)
         self.assertIn("不要重新设计", output_spec)
         self.assertIn("忠于原 Landing Page 的设计风格", output_spec)
+        self.assertIn("### 跨市场转译", output_spec)
+        self.assertIn("不得新增第六个一级内容章节", output_spec)
+
+    def test_cross_market_rules_preserve_truth(self):
+        self.assertTrue(CROSS_MARKET.is_file())
+        rules = read(CROSS_MARKET)
+
+        for phrase in (
+            "语言转换",
+            "市场惯例转换",
+            "不要机械地把所有 `we` 改成 `you`",
+            "没有数字时保持准确的定性表达",
+            "没有的信任信号不得“补位”",
+            "不得暗示已经具备",
+            "不得引入新事实",
+        ):
+            self.assertIn(phrase, rules)
+
+        for value in ("china", "international-en", "zh-CN", "en"):
+            self.assertIn(value, rules)
+
+        self.assertIn("### 跨市场转译", rules)
+        self.assertIn("`## 达` 内", rules)
 
     def test_landing_page_excludes_translation_notes_and_screenshot_evidence(self):
         text = read(SKILL_MD)

@@ -91,6 +91,9 @@ class LandingPageContract(unittest.TestCase):
         self.assertEqual(cases.count("中文市场 · 中→中"), 2)
         self.assertIn("英文市场 · 中→英", cases)
         self.assertIn("英文市场 · 英→英", cases)
+        self.assertIn("A Chinese name you’ll never regret tattooing.", cases)
+        self.assertNotIn("Get the Chinese name right", cases)
+        self.assertNotIn("A Chinese name with meaning behind every character", cases)
         self.assertEqual(cases.count("<img"), 8)
         for name in (
             "letspod-source.jpg",

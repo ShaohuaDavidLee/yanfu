@@ -1,0 +1,7 @@
+interface:
+  display_name: "严复 Skill"
+  short_description: "把中英文落地页转译成面向中文或英文市场的产品故事"
+  icon_small: "./assets/yanfu-icon.png"
+  icon_large: "./assets/yanfu-portrait.png"
+  brand_color: "#A8302D"
+  default_prompt: "用 $yanfu 把这个已有 Landing Page 和产品截图转译成面向中文市场或英文市场 Beta 的 landing.html 与 yanfu-notes.md，并忠于原产品事实与设计风格。"

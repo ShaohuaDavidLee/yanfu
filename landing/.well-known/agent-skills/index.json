@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "yanfu",
+      "description": "用于开发者提供已有的公开 Landing Page 和 1–5 张产品截图，希望面向中文市场或英文市场 Beta，在不修改定位、不发明承诺的前提下，把中文或英文页面翻译成用户更容易理解的产品故事；也适用于“帮我出海”“转成英文落地页”“translate or localize my landing page”“adapt this page for Chinese users”等请求。",
+      "type": "archive",
+      "url": "https://yanfu.caojuege.com/downloads/agent-yanfu-4c2900605d04761d.zip",
+      "digest": "sha256:4c2900605d04761de574d4799c54124f9bae446fe8fd49b96c4f5b0665f6a7b4"
+    }
+  ]
+}
